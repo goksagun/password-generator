@@ -15,50 +15,9 @@
                 </div>
                 <div>
                     <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">How to Create, Remember, and Secure a Strong Password</h1>
-                    <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">Passwords have become a big part of our lives in the digital age. We use them, so often it is easy to overlook the importance of creating a strong one. Almost every bit of private information about us is stored behind a password.</p>
+                    <p class="mt-6 mb-6 text-lg leading-8 text-gray-600 sm:text-center">Passwords have become a big part of our lives in the digital age. We use them, so often it is easy to overlook the importance of creating a strong one. Almost every bit of private information about us is stored behind a password. Type your phrase to create an acronym.</p>
 
-                    <!--
-                      This example requires some changes to your config:
-
-                      ```
-                      // tailwind.config.js
-                      module.exports = {
-                        // ...
-                        plugins: [
-                          // ...
-                          require('@tailwindcss/forms'),
-                        ],
-                      }
-                      ```
-                    -->
-                    <div>
-                        {#<label for="price" class="block text-sm font-medium text-gray-700">Price</label>#}
-                        <div class="relative mt-1 rounded-md shadow-sm">
-                            {#<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                <span class="text-gray-500 sm:text-sm">$</span>
-                            </div>#}
-                            <input type="text" name="phrase" id="phrase" class="block w-full p-4 rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-md" placeholder="Type your phrase..." autocomplete="off">
-                            {#<div class="absolute inset-y-0 right-0 flex items-center">
-                                <label for="currency" class="sr-only">Currency</label>
-                                <select id="currency" name="currency" class="h-full rounded-md border-transparent bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                    <option>USD</option>
-                                    <option>CAD</option>
-                                    <option>EUR</option>
-                                </select>
-                            </div>#}
-                        </div>
-                    </div>
-
-                    <div class="mt-8 flex gap-x-4 sm:justify-center">
-                        <button type="button" class="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700">
-                            Generate
-                            {#<span class="text-indigo-200" aria-hidden="true">&rarr;</span>#}
-                        </button>
-                        {#<a href="#" class="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                            Live demo
-                            <span class="text-gray-400" aria-hidden="true">&rarr;</span>
-                        </a>#}
-                    </div>
+                    {{ component('password_generator') }}
                 </div>
                 <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
                     <svg class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" fill="none" xmlns="http://www.w3.org/2000/svg">
