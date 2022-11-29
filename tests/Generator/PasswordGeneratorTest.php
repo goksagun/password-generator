@@ -35,4 +35,13 @@ class PasswordGeneratorTest extends TestCase
         yield ['G!0p!@9pp', 'Genius is one percent inspiration and 99 percent perspiration'];
         yield ['Md@3g0!tm5', 'Mad dogs and Englishmen go out in the midday sun'];
     }
+
+    public function testThrowException()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->generator->generateFrom('<p>I go bowling every Friday night with 8 friends</p>');
+    }
+
+
 }
