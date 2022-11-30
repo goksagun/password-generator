@@ -16,6 +16,9 @@ class PasswordGenerator implements GeneratorInterface
             throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
         }
 
+        // cleanup
+        $phrase = trim($phrase);
+
         // split phrase to words
         $words = explode(separator: ' ', string: $phrase);
 
