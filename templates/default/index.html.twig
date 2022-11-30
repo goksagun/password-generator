@@ -3,34 +3,20 @@
 {% block title %}Secure Password Generator{% endblock %}
 
 {% block body %}
-    <div class="relative px-6 lg:px-8">
-        <div class="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
-            <div>
-                <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-                    <div class="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              <span class="text-gray-600">
-                Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
-              </span>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">How to Create, Remember, and Secure a Strong Password</h1>
-                    <p class="mt-6 mb-6 text-lg leading-8 text-gray-600 sm:text-center">Passwords have become a big part of our lives in the digital age. We use them, so often it is easy to overlook the importance of creating a strong one. Almost every bit of private information about us is stored behind a password. Type your phrase to create an acronym.</p>
+    <section class="bg-white dark:bg-gray-900 min-h-screen">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+            <a href="#" class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700" role="alert">
+                <span class="text-xs bg-primary-600 rounded-full text-white px-4 py-1.5 mr-3">New</span> <span class="text-sm font-medium">Flowbite is out! See what's new</span>
+                <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </a>
+            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">How to Create, Remember, and Secure a Strong Password</h1>
+            <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 hidden md:block">Passwords have become a big part of our lives in the digital age. We use them, so often it is easy to overlook the importance of creating a strong one. Type your phrase to create an acronym.</p>
 
+            <div class="px-4 mx-auto text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-36">
+                <div class="flex flex-wrap justify-center items-center mt-8 text-gray-500 sm:justify-between">
                     {{ component('password_generator') }}
-                </div>
-                <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-                    <svg class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
-                        <defs>
-                            <linearGradient id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#9089FC"></stop>
-                                <stop offset="1" stop-color="#FF80B5"></stop>
-                            </linearGradient>
-                        </defs>
-                    </svg>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}
