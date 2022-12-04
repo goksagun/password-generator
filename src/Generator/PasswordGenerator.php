@@ -12,6 +12,13 @@ class PasswordGenerator implements GeneratorInterface
 
     public function generateFrom(string $phrase): string
     {
+        if ($this->is_html($phrase)) {
+            throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
+        }
+
+        // cleanup
+        $phrase = trim($phrase);
+
         // split phrase to words
         $words = explode(separator: ' ', string: $phrase);
 
@@ -39,5 +46,10 @@ class PasswordGenerator implements GeneratorInterface
         //$acronym .= ':)';
 
         return $acronym; // I go bowling every Friday night with 8 friends becomes 1gbeFnw8f:)
+    }
+
+    private function is_html(string $phrase): bool
+    {
+        return preg_match("/<[^<]+>/", $phrase) !== 0;
     }
 }
