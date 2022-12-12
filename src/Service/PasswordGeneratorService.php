@@ -11,13 +11,9 @@ class PasswordGeneratorService
     {
     }
 
-    public function generate(?string $phrase = null): array
+    public function generate(string $phrase = null): array
     {
-        if (null === $phrase) {
-            $acronym = $this->generator->generate();
-        } else {
-            $acronym = $this->generator->generateFrom($phrase);
-        }
+        $acronym = $this->generator->generateFrom($phrase);
 
         $zxcvbn = new Zxcvbn();
 
