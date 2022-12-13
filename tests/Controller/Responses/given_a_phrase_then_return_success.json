@@ -1,0 +1,8 @@
+{
+  "data": {
+    "phrase": "Better to have loved and lost than never to have loved at all",
+    "acronym": "Bth1@1tnth1@@",
+    "strength": "@json@",
+    "created": "@string@.isDateTime()"
+  }
+}
