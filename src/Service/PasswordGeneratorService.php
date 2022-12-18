@@ -15,6 +15,18 @@ class PasswordGeneratorService
     {
         $acronym = $this->generator->generateFrom($phrase);
 
+        return [
+            'data' => [
+                'phrase' => $phrase,
+                'acronym' => $acronym,
+            ],
+        ];
+    }
+
+    public function generateWithStrength(string $phrase = null): array
+    {
+        $acronym = $this->generator->generateFrom($phrase);
+
         $zxcvbn = new Zxcvbn();
 
         return [
@@ -22,7 +34,6 @@ class PasswordGeneratorService
                 'phrase' => $phrase,
                 'acronym' => $acronym,
                 'strength' => $zxcvbn->passwordStrength($acronym),
-                'created' => (new \DateTimeImmutable())->format(DATE_ATOM),
             ],
         ];
     }

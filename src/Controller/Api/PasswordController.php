@@ -50,6 +50,6 @@ class PasswordController extends AbstractController
             return $this->json($data, 422);
         }
 
-        return $this->json($this->generator->generate($request->get('phrase')));
+        return $this->json($this->generator->generateWithStrength($request->get('phrase')));
     }
 }

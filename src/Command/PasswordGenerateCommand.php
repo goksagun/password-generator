@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Generator\GeneratorInterface;
+use App\Service\PasswordGeneratorService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,7 +17,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class PasswordGenerateCommand extends Command
 {
-    public function __construct(private readonly GeneratorInterface $generator)
+    public function __construct(private readonly PasswordGeneratorService $generatorService)
     {
         parent::__construct();
     }
@@ -38,9 +38,9 @@ class PasswordGenerateCommand extends Command
         if ($phrase) {
             $io->note(sprintf('You passed as phrase: "%s"', $phrase));
 
-            $acronym = $this->generator->generateFrom($phrase);
+            $acronym = $this->generatorService->generate($phrase);
 
-            $io->info(sprintf('Here is your acronym: %s', $acronym));
+            $io->info(sprintf('Here is your acronym: %s', $acronym['data']['acronym']));
         }
 
 //        if ($input->getOption('option1')) {
