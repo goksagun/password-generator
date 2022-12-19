@@ -20,7 +20,7 @@ class PasswordGenerator implements GeneratorInterface
     private function validate(string $phrase): void
     {
         if ($this->isHtml($phrase)) {
-            throw new PhraseNotValidException('Phrase must be contains alpha numeric chars and symbols');
+            throw new PhraseNotValidException('The phrase must contain alphanumeric characters and symbols');
         }
     }
 
