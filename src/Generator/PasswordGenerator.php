@@ -12,10 +12,9 @@ class PasswordGenerator implements GeneratorInterface
 
         $words = $this->splitPhraseToWords($phrase);
 
-        $listAcronym = $this->getListAcronym($words);
+        $acronymList = $this->getListAcronym($words);
 
-        // concat list as a text
-        $acronym = implode(separator: '', array: $listAcronym);
+        $acronym = $this->concat($acronymList);
 
         // add emoticons
         //$acronym .= ':)';
@@ -64,5 +63,10 @@ class PasswordGenerator implements GeneratorInterface
             $listAcronym[] = $firstChar;
         }
         return $listAcronym;
+    }
+
+    private function concat(array $acronymList): string
+    {
+        return implode(separator: '', array: $acronymList);
     }
 }
