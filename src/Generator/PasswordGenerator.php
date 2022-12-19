@@ -12,8 +12,7 @@ class PasswordGenerator implements GeneratorInterface
 
         $words = $this->splitPhraseToWords($phrase);
 
-        $listAcronym = [];
-        $listAcronym = $this->getListAcronym($words, $listAcronym);
+        $listAcronym = $this->getListAcronym($words);
 
         // concat list as a text
         $acronym = implode(separator: '', array: $listAcronym);
@@ -46,8 +45,9 @@ class PasswordGenerator implements GeneratorInterface
         return explode(' ', $phrase);
     }
 
-    private function getListAcronym(array $words, array $listAcronym): array
+    private function getListAcronym(array $words): array
     {
+        $listAcronym = [];
         foreach ($words as $word) {
             // take first char every word in text
             $firstChar = $word[0];
