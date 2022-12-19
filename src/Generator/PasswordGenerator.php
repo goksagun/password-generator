@@ -10,7 +10,7 @@ class PasswordGenerator implements GeneratorInterface
 
         $phrase = $this->cleanup($phrase);
 
-        $words = $this->splitPhraseToWords($phrase);
+        $words = $this->splitToWords($phrase);
 
         $acronymList = $this->createAcronymListFrom($words);
 
@@ -34,7 +34,7 @@ class PasswordGenerator implements GeneratorInterface
         return trim($phrase);
     }
 
-    private function splitPhraseToWords(string $phrase): array
+    private function splitToWords(string $phrase): array
     {
         return explode(' ', $phrase);
     }
