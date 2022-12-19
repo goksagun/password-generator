@@ -4,12 +4,6 @@ namespace App\Generator;
 
 class PasswordGenerator implements GeneratorInterface
 {
-
-    public function generate(): string
-    {
-        return '';
-    }
-
     public function generateFrom(string $phrase): string
     {
         $this->validate($phrase);
