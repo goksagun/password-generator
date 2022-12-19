@@ -14,8 +14,7 @@ class PasswordGenerator implements GeneratorInterface
     {
         $this->validate($phrase);
 
-        // cleanup
-        $phrase = trim($phrase);
+        $phrase = $this->cleanup($phrase);
 
         // split phrase to words
         $words = explode(separator: ' ', string: $phrase);
@@ -56,5 +55,10 @@ class PasswordGenerator implements GeneratorInterface
         if ($this->isHtml($phrase)) {
             throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
         }
+    }
+
+    private function cleanup(string $phrase): string
+    {
+        return trim($phrase);
     }
 }
