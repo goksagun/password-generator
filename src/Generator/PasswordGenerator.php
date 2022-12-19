@@ -12,7 +12,7 @@ class PasswordGenerator implements GeneratorInterface
 
         $words = $this->splitPhraseToWords($phrase);
 
-        $acronymList = $this->getListAcronym($words);
+        $acronymList = $this->createAcronymListFrom($words);
 
         return $this->concat($acronymList);
     }
@@ -39,7 +39,7 @@ class PasswordGenerator implements GeneratorInterface
         return explode(' ', $phrase);
     }
 
-    private function getListAcronym(array $words): array
+    private function createAcronymListFrom(array $words): array
     {
         $listAcronym = [];
         foreach ($words as $word) {
