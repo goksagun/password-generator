@@ -14,12 +14,7 @@ class PasswordGenerator implements GeneratorInterface
 
         $acronymList = $this->getListAcronym($words);
 
-        $acronym = $this->concat($acronymList);
-
-        // add emoticons
-        //$acronym .= ':)';
-
-        return $acronym; // I go bowling every Friday night with 8 friends becomes 1gbeFnw8f:)
+        return $this->concat($acronymList);
     }
 
     private function isHtml(string $phrase): bool
