@@ -12,9 +12,7 @@ class PasswordGenerator implements GeneratorInterface
 
     public function generateFrom(string $phrase): string
     {
-        if ($this->isHtml($phrase)) {
-            throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
-        }
+        $this->validate($phrase);
 
         // cleanup
         $phrase = trim($phrase);
@@ -51,5 +49,12 @@ class PasswordGenerator implements GeneratorInterface
     private function isHtml(string $phrase): bool
     {
         return preg_match("/<[^<]+>/", $phrase) !== 0;
+    }
+
+    private function validate(string $phrase): void
+    {
+        if ($this->isHtml($phrase)) {
+            throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
+        }
     }
 }
