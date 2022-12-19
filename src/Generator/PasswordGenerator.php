@@ -67,6 +67,6 @@ class PasswordGenerator implements GeneratorInterface
 
     private function concat(array $acronymList): string
     {
-        return implode(separator: '', array: $acronymList);
+        return implode('', $acronymList);
     }
 }
