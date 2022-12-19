@@ -2,7 +2,7 @@
 
 namespace App\Twig\Components;
 
-use App\Generator\GeneratorInterface;
+use App\Service\PasswordGeneratorInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -15,16 +15,16 @@ final class PasswordGeneratorComponent
     #[LiveProp(writable: true)]
     public string $phrase = '';
 
-    public function __construct(private readonly GeneratorInterface $generator)
+    public function __construct(private readonly PasswordGeneratorInterface $generator)
     {
     }
 
     public function getPassword(): string
     {
         if ('' === $this->phrase) {
-            return $this->generator->generateFrom('I go bowling every Friday night with 8 friends');
+            $this->phrase = 'I go bowling every Friday night with 8 friends';
         }
 
-        return $this->generator->generateFrom($this->phrase);
+        return $this->generator->generate($this->phrase)['data']['acronym'];
     }
 }

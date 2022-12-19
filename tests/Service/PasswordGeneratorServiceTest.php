@@ -2,18 +2,22 @@
 
 namespace App\Tests\Service;
 
-use App\Generator\PasswordGenerator;
+use App\Service\PasswordGeneratorInterface;
 use App\Service\PasswordGeneratorService;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class PasswordGeneratorServiceTest extends TestCase
+class PasswordGeneratorServiceTest extends KernelTestCase
 {
 
-    private PasswordGeneratorService $passwordGeneratorService;
+    private PasswordGeneratorInterface $passwordGeneratorService;
 
     protected function setUp(): void
     {
-        $this->passwordGeneratorService = new PasswordGeneratorService(new PasswordGenerator());
+        self::bootKernel();
+
+        $container = static::getContainer();
+
+        $this->passwordGeneratorService = $container->get(PasswordGeneratorService::class);
     }
 
     public function testGenerate()
@@ -26,7 +30,9 @@ class PasswordGeneratorServiceTest extends TestCase
 
     public function testGenerateWithStrength()
     {
-        $actual = $this->passwordGeneratorService->generateWithStrength('I go bowling every Friday night with 8 friends');
+        $actual = $this->passwordGeneratorService->generateWithStrength(
+            'I go bowling every Friday night with 8 friends'
+        );
         $this->assertArrayHasKey('data', $actual);
         $this->assertArrayHasKey('phrase', $actual['data']);
         $this->assertArrayHasKey('acronym', $actual['data']);

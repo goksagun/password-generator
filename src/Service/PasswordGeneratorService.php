@@ -3,17 +3,21 @@
 namespace App\Service;
 
 use App\Generator\GeneratorInterface;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 use ZxcvbnPhp\Zxcvbn;
 
-class PasswordGeneratorService
+class PasswordGeneratorService implements PasswordGeneratorInterface
 {
-    public function __construct(private readonly GeneratorInterface $generator)
+    public function __construct(private readonly GeneratorInterface $generator, private readonly CacheInterface $cache)
     {
     }
 
     public function generate(string $phrase = null): array
     {
-        $acronym = $this->generator->generateFrom($phrase);
+        $acronym = $this->cache->get($phrase, function (ItemInterface $item) use ($phrase) {
+            return $this->generator->generateFrom($phrase);
+        });
 
         return [
             'data' => [

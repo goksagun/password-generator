@@ -2,12 +2,11 @@
 
 namespace App\Command;
 
-use App\Service\PasswordGeneratorService;
+use App\Service\PasswordGeneratorInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -17,7 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class PasswordGenerateCommand extends Command
 {
-    public function __construct(private readonly PasswordGeneratorService $generatorService)
+    public function __construct(private readonly PasswordGeneratorInterface $generatorService)
     {
         parent::__construct();
     }
@@ -25,9 +24,7 @@ class PasswordGenerateCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addArgument('phrase', InputArgument::OPTIONAL, 'Type your phrase to generate a secure password')
-            //->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
-        ;
+            ->addArgument('phrase', InputArgument::OPTIONAL, 'Type your phrase to generate a secure password');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -42,12 +39,6 @@ class PasswordGenerateCommand extends Command
 
             $io->info(sprintf('Here is your acronym: %s', $acronym['data']['acronym']));
         }
-
-//        if ($input->getOption('option1')) {
-//            // ...
-//        }
-
-//        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
 
         return Command::SUCCESS;
     }
