@@ -25,16 +25,10 @@ class PasswordGeneratorService
 
     public function generateWithStrength(string $phrase = null): array
     {
-        $acronym = $this->generator->generateFrom($phrase);
+        $result = $this->generate($phrase);
 
-        $zxcvbn = new Zxcvbn();
+        $result['data']['strength'] = (new Zxcvbn())->passwordStrength($result['data']['acronym']);
 
-        return [
-            'data' => [
-                'phrase' => $phrase,
-                'acronym' => $acronym,
-                'strength' => $zxcvbn->passwordStrength($acronym),
-            ],
-        ];
+        return $result;
     }
 }
