@@ -17,16 +17,16 @@ class PasswordGenerator implements GeneratorInterface
         return $this->concat($acronymList);
     }
 
-    private function isHtml(string $phrase): bool
-    {
-        return preg_match("/<[^<]+>/", $phrase) !== 0;
-    }
-
     private function validate(string $phrase): void
     {
         if ($this->isHtml($phrase)) {
             throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
         }
+    }
+
+    private function isHtml(string $phrase): bool
+    {
+        return preg_match("/<[^<]+>/", $phrase) !== 0;
     }
 
     private function cleanup(string $phrase): string
