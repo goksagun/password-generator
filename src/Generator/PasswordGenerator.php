@@ -43,8 +43,7 @@ class PasswordGenerator implements GeneratorInterface
     {
         $listAcronym = [];
         foreach ($words as $word) {
-            // take first char every word in text
-            $firstChar = $word[0];
+            $firstChar = $this->getFirstChar($word);
 
             if (!$this->isAlphanumeric($firstChar)) {
                 continue;
@@ -53,6 +52,11 @@ class PasswordGenerator implements GeneratorInterface
             $listAcronym[] = $this->convertToNumeralAndSpecialChar($firstChar);
         }
         return $listAcronym;
+    }
+
+    private function getFirstChar($word)
+    {
+        return $word[0];
     }
 
     private function isAlphanumeric(mixed $firstChar): bool
