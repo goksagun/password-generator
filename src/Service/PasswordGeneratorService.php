@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Generator\GeneratorInterface;
 use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Contracts\Cache\ItemInterface;
 use ZxcvbnPhp\Zxcvbn;
 
 class PasswordGeneratorService implements PasswordGeneratorInterface
@@ -15,14 +14,12 @@ class PasswordGeneratorService implements PasswordGeneratorInterface
 
     public function generate(string $phrase = null): array
     {
-        $acronym = $this->cache->get($phrase, function (ItemInterface $item) use ($phrase) {
-            return $this->generator->generateFrom($phrase);
-        });
-
         return [
             'data' => [
                 'phrase' => $phrase,
-                'acronym' => $acronym,
+                'acronym' => $this->cache->get($phrase, function () use ($phrase): string {
+                    return $this->generator->generateFrom($phrase);
+                }),
             ],
         ];
     }
