@@ -51,9 +51,7 @@ class PasswordGenerator implements GeneratorInterface
                 continue;
             }
 
-            $firstChar = $this->convertToNumeralAndSpecialChar($firstChar);
-
-            $listAcronym[] = $firstChar;
+            $listAcronym[] = $this->convertToNumeralAndSpecialChar($firstChar);
         }
         return $listAcronym;
     }
