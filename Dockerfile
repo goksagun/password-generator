@@ -15,9 +15,9 @@ RUN apt-get update \
     && apt-get install zip -y \
     # && apt-get install libpq-dev -y \
     && apt-get install gnupg2 -y \
-    && curl -fsSL https://deb.nodesource.com/setup_19.x | bash -  \
-    && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+    && curl -fsSL https://deb.nodesource.com/setup_19.x | bash -
+    #&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    #&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 # Update and install node and yarn package managers.
 RUN apt-get update && apt-get install -y nodejs yarn
@@ -44,8 +44,8 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN export APP_ENV=$APP_ENV  \
     && composer install --no-dev --optimize-autoloader \
     && composer dump-env $APP_ENV \
-    && yarn install \
-    && yarn encore $APP_ENV
+    && npm install \
+    && ./node_modules/.bin/encore $APP_ENV
 
 # Copy Apache default virtual host configuration.
 COPY docker/apache/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
