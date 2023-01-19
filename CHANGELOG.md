@@ -1,3 +1,7 @@
+## 0.2.0 (January 19, 2023)
+  - Implement Changelog
+  - Implement StringUtils
+
 ## 0.1.0 (January 14, 2023)
   - Update composer dependencies
   - Update composer dependencies
