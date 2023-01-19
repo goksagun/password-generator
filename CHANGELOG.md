@@ -1,3 +1,6 @@
+## 0.2.1 (January 19, 2023)
+  - Add missing changelog link
+
 ## 0.2.0 (January 19, 2023)
   - Implement Changelog
   - Implement StringUtils
