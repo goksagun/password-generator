@@ -2,17 +2,17 @@
 
 namespace App\Twig\Runtime;
 
-use App\Utils\StringUtils;
+use App\Service\VersionService;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class AppExtensionRuntime implements RuntimeExtensionInterface
 {
-    public function __construct(private readonly string $versionFile)
+    public function __construct(private readonly VersionService $versionService)
     {
     }
 
     public function getAppVersion(): string
     {
-        return StringUtils::removeLineFeed(file_get_contents($this->versionFile));
+        return $this->versionService->getVersion();
     }
 }
