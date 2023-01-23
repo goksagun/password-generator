@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Utils\StringUtils;
 
-class VersionService
+class VersionService implements VersionInterface
 {
     public function __construct(private readonly string $versionFile)
     {

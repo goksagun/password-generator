@@ -2,12 +2,12 @@
 
 namespace App\Twig\Runtime;
 
-use App\Service\VersionService;
+use App\Service\VersionInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class AppExtensionRuntime implements RuntimeExtensionInterface
 {
-    public function __construct(private readonly VersionService $versionService)
+    public function __construct(private readonly VersionInterface $versionService)
     {
     }
 
