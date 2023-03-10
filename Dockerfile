@@ -20,7 +20,7 @@ RUN apt-get update \
     #&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 # Update and install node and yarn package managers.
-RUN apt-get update && apt-get install -y nodejs yarn
+RUN apt-get update && apt-get install -y nodejs
 
 # Configure PHP for Cloud Run.
 # Precompile PHP code with opcache.
