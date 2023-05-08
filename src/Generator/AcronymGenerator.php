@@ -20,19 +20,13 @@ class AcronymGenerator implements GeneratorInterface
 
         $words = $this->splitPhraseIntoWords($phrase);
 
-        $listAcronym = [];
+        $acronym = '';
         foreach ($words as $word) {
             $firstChar = $this->getFirstAlphaNumericCharacter($word);
+            $firstChar = $this->convertToSpecialCharacter($firstChar);
 
-            // convert to numeral
-            // A a B b C c D d E e F f G g H h I i J j K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z
-            $firstChar = str_ireplace(['a', 'e', 'i', 'l', 'o', 's'], ['@', '3', '!', '1', '0', '5'], $firstChar);
-
-            $listAcronym[] = $firstChar;
+            $acronym .= $firstChar;
         }
-
-        // concat list as a text
-        $acronym = implode(separator: '', array: $listAcronym);
 
         // add emoticons
         //$acronym .= ':)';
@@ -74,5 +68,11 @@ class AcronymGenerator implements GeneratorInterface
         }
 
         return $firstChar;
+    }
+
+    private function convertToSpecialCharacter(?string $firstChar): string|array
+    {
+        // A a B b C c D d E e F f G g H h I i J j K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z
+        return str_ireplace(['a', 'e', 'i', 'l', 'o', 's'], ['@', '3', '!', '1', '0', '5'], $firstChar);
     }
 }
