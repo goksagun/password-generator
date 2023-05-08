@@ -46,16 +46,16 @@ class AcronymGenerator implements GeneratorInterface
         return $acronym; // I go bowling every Friday night with 8 friends becomes 1gbeFnw8f:)
     }
 
-    private function is_html(string $phrase): bool
-    {
-        return preg_match("/<[^<]+>/", $phrase) !== 0;
-    }
-
     private function validatePhrase(string $phrase): void
     {
-        if ($this->is_html($phrase)) {
+        if ($this->isHtml($phrase)) {
             throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
         }
+    }
+
+    private function isHtml(string $phrase): bool
+    {
+        return preg_match("/<[^<]+>/", $phrase) !== 0;
     }
 
     private function splitPhraseIntoWords(string $phrase): array
