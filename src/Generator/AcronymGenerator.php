@@ -16,9 +16,7 @@ class AcronymGenerator implements GeneratorInterface
 
     private function generateAcronymFromPhrase(string $phrase): string
     {
-        if ($this->is_html($phrase)) {
-            throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
-        }
+        $this->validatePhrase($phrase);
 
         // cleanup
         $phrase = trim($phrase);
@@ -55,5 +53,12 @@ class AcronymGenerator implements GeneratorInterface
     private function is_html(string $phrase): bool
     {
         return preg_match("/<[^<]+>/", $phrase) !== 0;
+    }
+
+    private function validatePhrase(string $phrase): void
+    {
+        if ($this->is_html($phrase)) {
+            throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
+        }
     }
 }
