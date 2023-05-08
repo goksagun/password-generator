@@ -29,18 +29,7 @@ class AcronymGenerator implements GeneratorInterface
 
         $words = $this->splitPhraseIntoWords($phrase);
 
-        $acronym = '';
-        foreach ($words as $word) {
-            $firstChar = $this->getFirstAlphaNumericCharacter($word);
-            $firstChar = $this->convertToSpecialCharacter($firstChar);
-
-            $acronym .= $firstChar;
-        }
-
-        // add emoticons
-        //$acronym .= ':)';
-
-        return $acronym; // I go bowling every Friday night with 8 friends becomes 1gbeFnw8f:)
+        return $this->getAcronym($words);
     }
 
     private function validatePhrase(string $phrase): void
@@ -82,5 +71,17 @@ class AcronymGenerator implements GeneratorInterface
     private function convertToSpecialCharacter(?string $char): string
     {
         return self::SPECIAL_CHARACTER_MAP[strtolower($char)] ?? $char;
+    }
+
+    private function getAcronym(array $words): string
+    {
+        $acronym = '';
+        foreach ($words as $word) {
+            $acronym .= $this->convertToSpecialCharacter(
+                $this->getFirstAlphaNumericCharacter($word)
+            );
+        }
+
+        return $acronym;
     }
 }
