@@ -11,10 +11,10 @@ class AcronymGenerator implements GeneratorInterface
 
     public function generate(): string
     {
-        return $this->generateFrom($this->phrase);
+        return $this->generateAcronymFromPhrase($this->phrase);
     }
 
-    private function generateFrom(string $phrase): string
+    private function generateAcronymFromPhrase(string $phrase): string
     {
         if ($this->is_html($phrase)) {
             throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
