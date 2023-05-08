@@ -18,7 +18,7 @@ class PasswordGeneratorService implements PasswordGeneratorInterface
             'data' => [
                 'phrase' => $phrase,
                 'acronym' => $this->cache->get($phrase, function () use ($phrase): string {
-                    return $this->generator->generateFrom($phrase);
+                    return $this->generator->generate($phrase);
                 }),
             ],
         ];

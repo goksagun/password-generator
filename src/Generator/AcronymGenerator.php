@@ -2,15 +2,19 @@
 
 namespace App\Generator;
 
-class PasswordGenerator implements GeneratorInterface
+class AcronymGenerator implements GeneratorInterface
 {
+
+    public function __construct(private readonly string $phrase)
+    {
+    }
 
     public function generate(): string
     {
-        return '';
+        return $this->generateFrom($this->phrase);
     }
 
-    public function generateFrom(string $phrase): string
+    private function generateFrom(string $phrase): string
     {
         if ($this->is_html($phrase)) {
             throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');

@@ -2,25 +2,18 @@
 
 namespace App\Tests\Generator;
 
-use App\Generator\GeneratorInterface;
-use App\Generator\PasswordGenerator;
+use App\Generator\AcronymGenerator;
 use PHPUnit\Framework\TestCase;
 
 class PasswordGeneratorTest extends TestCase
 {
-    private readonly GeneratorInterface $generator;
-
-    protected function setUp(): void
-    {
-        $this->generator = new PasswordGenerator();
-    }
 
     /**
      * @dataProvider provideGenerateFromData
      */
     public function testGenerateFrom(string $expected, string $input): void
     {
-        $actual = $this->generator->generateFrom($input);
+        $actual = (new AcronymGenerator($input))->generate();
 
         $this->assertEquals(expected: $expected, actual: $actual);
     }
@@ -42,8 +35,6 @@ class PasswordGeneratorTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $this->generator->generateFrom('<p>I go bowling every Friday night with 8 friends</p>');
+        (new AcronymGenerator('<p>I go bowling every Friday night with 8 friends</p>'))->generate();
     }
-
-
 }
