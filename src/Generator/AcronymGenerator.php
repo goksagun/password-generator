@@ -5,6 +5,15 @@ namespace App\Generator;
 class AcronymGenerator implements GeneratorInterface
 {
 
+    private const SPECIAL_CHARACTER_MAP = [
+        'a' => '@',
+        'e' => '3',
+        'i' => '!',
+        'l' => '1',
+        'o' => '0',
+        's' => '5',
+    ];
+
     public function __construct(private readonly string $phrase)
     {
     }
@@ -70,9 +79,8 @@ class AcronymGenerator implements GeneratorInterface
         return $firstChar;
     }
 
-    private function convertToSpecialCharacter(?string $firstChar): string|array
+    private function convertToSpecialCharacter(?string $char): string
     {
-        // A a B b C c D d E e F f G g H h I i J j K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z
-        return str_ireplace(['a', 'e', 'i', 'l', 'o', 's'], ['@', '3', '!', '1', '0', '5'], $firstChar);
+        return self::SPECIAL_CHARACTER_MAP[strtolower($char)] ?? $char;
     }
 }
