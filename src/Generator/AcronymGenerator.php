@@ -18,11 +18,7 @@ class AcronymGenerator implements GeneratorInterface
     {
         $this->validatePhrase($phrase);
 
-        // cleanup
-        $phrase = trim($phrase);
-
-        // split phrase to words
-        $words = explode(separator: ' ', string: $phrase);
+        $words = $this->splitPhraseIntoWords($phrase);
 
         $listAcronym = [];
         foreach ($words as $word) {
@@ -60,5 +56,15 @@ class AcronymGenerator implements GeneratorInterface
         if ($this->is_html($phrase)) {
             throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
         }
+    }
+
+    private function splitPhraseIntoWords(string $phrase): array
+    {
+// cleanup
+        $phrase = trim($phrase);
+
+        // split phrase to words
+        $words = explode(separator: ' ', string: $phrase);
+        return $words;
     }
 }
