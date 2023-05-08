@@ -60,8 +60,6 @@ class AcronymGenerator implements GeneratorInterface
 
     private function splitPhraseIntoWords(string $phrase): array
     {
-        $phrase = trim($phrase);
-
-        return preg_split('/\s+/', $phrase);
+        return preg_split('/\s+/', trim($phrase));
     }
 }
