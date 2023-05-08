@@ -22,13 +22,7 @@ class AcronymGenerator implements GeneratorInterface
 
         $listAcronym = [];
         foreach ($words as $word) {
-            // take first char every word in text
-            $firstChar = $word[0];
-
-            // skip if not alphanumeric
-            if (!ctype_alnum($firstChar)) {
-                continue;
-            }
+            $firstChar = $this->getFirstAlphaNumericCharacter($word);
 
             // convert to numeral
             // A a B b C c D d E e F f G g H h I i J j K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z
@@ -48,8 +42,12 @@ class AcronymGenerator implements GeneratorInterface
 
     private function validatePhrase(string $phrase): void
     {
+        if (empty($phrase)) {
+            throw new \InvalidArgumentException('Phrase cannot be empty');
+        }
+
         if ($this->isHtml($phrase)) {
-            throw new \InvalidArgumentException('Phrase must be contains alpha numeric chars and symbols');
+            throw new \InvalidArgumentException('Phrase should be contains alpha numeric chars and symbols');
         }
     }
 
@@ -61,5 +59,20 @@ class AcronymGenerator implements GeneratorInterface
     private function splitPhraseIntoWords(string $phrase): array
     {
         return preg_split('/\s+/', trim($phrase));
+    }
+
+    private function getFirstAlphaNumericCharacter(mixed $word): ?string
+    {
+        $firstChar = null;
+
+        for ($i = 0; $i < strlen($word); $i++) {
+            $char = substr($word, $i, 1);
+            if (ctype_alnum($char)) {
+                $firstChar = $char;
+                break;
+            }
+        }
+
+        return $firstChar;
     }
 }
