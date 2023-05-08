@@ -2,13 +2,13 @@
 
 namespace App\Service;
 
-use App\Generator\GeneratorInterface;
+use App\Generator\AcronymGenerator;
 use Symfony\Contracts\Cache\CacheInterface;
 use ZxcvbnPhp\Zxcvbn;
 
 class PasswordGeneratorService implements PasswordGeneratorInterface
 {
-    public function __construct(private readonly GeneratorInterface $generator, private readonly CacheInterface $cache)
+    public function __construct(private readonly CacheInterface $cache)
     {
     }
 
@@ -18,7 +18,7 @@ class PasswordGeneratorService implements PasswordGeneratorInterface
             'data' => [
                 'phrase' => $phrase,
                 'acronym' => $this->cache->get($phrase, function () use ($phrase): string {
-                    return $this->generator->generate($phrase);
+                    return (new AcronymGenerator($phrase))->generate();
                 }),
             ],
         ];
