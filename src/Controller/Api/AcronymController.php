@@ -11,7 +11,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-#[Route('/api/acronym')]
 class AcronymController extends AbstractController
 {
     public function __construct(
@@ -20,7 +19,7 @@ class AcronymController extends AbstractController
     ) {
     }
 
-    #[Route('/generate', name: 'api_acronym_generate', methods: ['POST'])]
+    #[Route('/api/acronym/generate', name: 'api_acronym_generate', methods: ['POST'])]
     public function generate(Request $request): JsonResponse
     {
         $constraint = new Assert\Collection([
