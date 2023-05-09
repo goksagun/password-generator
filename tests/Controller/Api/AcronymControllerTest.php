@@ -2,7 +2,7 @@
 
 namespace App\Tests\Controller\Api;
 
-class PasswordControllerTest extends ApiTestCase
+class AcronymControllerTest extends ApiTestCase
 {
     public function test_given_a_phrase_then_return_success(): void
     {
@@ -14,7 +14,7 @@ class PasswordControllerTest extends ApiTestCase
 
         $response = $this->request(
             'POST',
-            '/api/password/generate',
+            '/api/acronym/generate',
             $content,
         );
 
@@ -32,7 +32,7 @@ class PasswordControllerTest extends ApiTestCase
 
         $response = $this->request(
             'POST',
-            '/api/password/generate',
+            '/api/acronym/generate',
             $content,
         );
 
@@ -47,7 +47,7 @@ class PasswordControllerTest extends ApiTestCase
 
         $this->request(
             'POST',
-            '/api/password/generate',
+            '/api/acronym/generate',
             $content,
         );
 

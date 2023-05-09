@@ -11,7 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class PasswordController extends AbstractController
+#[Route('/api/acronym')]
+class AcronymController extends AbstractController
 {
     public function __construct(
         private readonly PasswordGeneratorInterface $generator,
@@ -19,7 +20,7 @@ class PasswordController extends AbstractController
     ) {
     }
 
-    #[Route('/api/password/generate', name: 'api_password', methods: ['POST'])]
+    #[Route('/generate', name: 'api_acronym_generate', methods: ['POST'])]
     public function generate(Request $request): JsonResponse
     {
         $constraint = new Assert\Collection([
