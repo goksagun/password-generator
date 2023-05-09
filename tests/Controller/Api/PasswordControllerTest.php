@@ -2,9 +2,7 @@
 
 namespace App\Tests\Controller\Api;
 
-use ApiTestCase\JsonApiTestCase;
-
-class PasswordControllerTest extends JsonApiTestCase
+class PasswordControllerTest extends ApiTestCase
 {
     public function test_given_a_phrase_then_return_success(): void
     {
@@ -14,13 +12,11 @@ class PasswordControllerTest extends JsonApiTestCase
         }
         JSON;
 
-        $this->client->request(
-            'POST', '/api/password/generate', [], [],
-            ['CONTENT_TYPE' => 'application/json'],
-            $content
+        $response = $this->request(
+            'POST',
+            '/api/password/generate',
+            $content,
         );
-
-        $response = $this->client->getResponse();
 
         $this->assertResponseIsSuccessful();
         $this->assertResponse($response, 'given_a_phrase_then_return_success');
@@ -34,13 +30,11 @@ class PasswordControllerTest extends JsonApiTestCase
         }
         JSON;
 
-        $this->client->request(
-            'POST', '/api/password/generate', [], [],
-            ['CONTENT_TYPE' => 'application/json'],
-            $content
+        $response = $this->request(
+            'POST',
+            '/api/password/generate',
+            $content,
         );
-
-        $response = $this->client->getResponse();
 
         $this->assertResponse($response, 'given_empty_string_then_return_error', 422);
     }
@@ -51,10 +45,10 @@ class PasswordControllerTest extends JsonApiTestCase
 
         JSON;
 
-        $this->client->request(
-            'POST', '/api/password/generate', [], [],
-            ['CONTENT_TYPE' => 'application/json'],
-            $content
+        $this->request(
+            'POST',
+            '/api/password/generate',
+            $content,
         );
 
         $response = $this->client->getResponse();
