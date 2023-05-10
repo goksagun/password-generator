@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Service\PasswordGeneratorInterface;
+use App\Service\AcronymGeneratorInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,7 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class PasswordGenerateCommand extends Command
 {
-    public function __construct(private readonly PasswordGeneratorInterface $generatorService)
+    public function __construct(private readonly AcronymGeneratorInterface $generatorService)
     {
         parent::__construct();
     }

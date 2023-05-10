@@ -6,7 +6,7 @@ use App\Generator\AcronymGenerator;
 use Symfony\Contracts\Cache\CacheInterface;
 use ZxcvbnPhp\Zxcvbn;
 
-class PasswordGeneratorService implements PasswordGeneratorInterface
+class AcronymGeneratorService implements AcronymGeneratorInterface
 {
     public function __construct(private readonly CacheInterface $cache)
     {

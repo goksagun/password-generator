@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-interface PasswordGeneratorInterface
+interface AcronymGeneratorInterface
 {
     public function generate(string $phrase = null): array;
 

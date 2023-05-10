@@ -2,7 +2,7 @@
 
 namespace App\Twig\Components;
 
-use App\Service\PasswordGeneratorInterface;
+use App\Service\AcronymGeneratorInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -15,7 +15,7 @@ final class PasswordGeneratorComponent
     #[LiveProp(writable: true)]
     public string $phrase = '';
 
-    public function __construct(private readonly PasswordGeneratorInterface $generator)
+    public function __construct(private readonly AcronymGeneratorInterface $generator)
     {
     }
 

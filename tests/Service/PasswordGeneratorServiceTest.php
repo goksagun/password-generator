@@ -2,14 +2,14 @@
 
 namespace App\Tests\Service;
 
-use App\Service\PasswordGeneratorInterface;
-use App\Service\PasswordGeneratorService;
+use App\Service\AcronymGeneratorInterface;
+use App\Service\AcronymGeneratorService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class PasswordGeneratorServiceTest extends KernelTestCase
 {
 
-    private PasswordGeneratorInterface $passwordGeneratorService;
+    private AcronymGeneratorInterface $passwordGeneratorService;
 
     protected function setUp(): void
     {
@@ -17,7 +17,7 @@ class PasswordGeneratorServiceTest extends KernelTestCase
 
         $container = static::getContainer();
 
-        $this->passwordGeneratorService = $container->get(PasswordGeneratorService::class);
+        $this->passwordGeneratorService = $container->get(AcronymGeneratorService::class);
     }
 
     public function testGenerate()
