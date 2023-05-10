@@ -1,0 +1,7 @@
+{
+    "data": {
+        "length": 40,
+        "random": "@string@",
+        "strength": "@json@"
+    }
+}
