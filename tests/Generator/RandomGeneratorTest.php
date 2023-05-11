@@ -130,6 +130,50 @@ class RandomGeneratorTest extends TestCase
         yield [64, 64];
     }
 
+    /**
+     * @dataProvider provideGenerateFromMatchesComplexData
+     */
+    public function testGenerateFromMatchesComplex(string $expected, ?int $length)
+    {
+        $generator = $length
+            ? new RandomGenerator($length, RandomGenerator::STRATEGY_COMPLEX)
+            : new RandomGenerator(strategy: RandomGenerator::STRATEGY_COMPLEX);
+        $actual = $generator->generate();
+
+        $this->assertMatchesRegularExpression($expected, $actual);
+    }
+
+    public function provideGenerateFromMatchesComplexData(): \Generator
+    {
+        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', null];
+        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', 10];
+        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', 32];
+        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', 40];
+        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', 64];
+    }
+
+    /**
+     * @dataProvider provideGenerateFromGivenLengthMatchesComplexData
+     */
+    public function testGenerateFromGivenLengthMatchesComplex(int $expected, ?int $length)
+    {
+        $generator = $length
+            ? new RandomGenerator($length, RandomGenerator::STRATEGY_COMPLEX)
+            : new RandomGenerator(strategy: RandomGenerator::STRATEGY_COMPLEX);
+        $actual = $generator->generate();
+
+        $this->assertLength($expected, $actual);
+    }
+
+    public function provideGenerateFromGivenLengthMatchesComplexData(): \Generator
+    {
+        yield [8, null];
+        yield [10, 10];
+        yield [32, 32];
+        yield [40, 40];
+        yield [64, 64];
+    }
+
     private static function assertLength($excepted, $actual, $message = ''): void
     {
         self::assertEquals($excepted, strlen($actual), $message);
