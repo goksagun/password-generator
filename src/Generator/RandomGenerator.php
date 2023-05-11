@@ -33,47 +33,30 @@ class RandomGenerator implements GeneratorInterface
 
     public function alpha($length): string
     {
-        $characters = self::ALPHA_CHARACTERS;
-        $result = '';
-        $max = strlen($characters) - 1;
-        for ($i = 0; $i < $length; $i++) {
-            $result .= $characters[random_int(0, $max)];
-        }
-
-        return $result;
+        return $this->doRandom($length, self::ALPHA_CHARACTERS);
     }
 
     public function numeric($length): string
     {
-        $characters = self::NUMERIC_CHARACTERS;
-        $result = '';
-        $max = strlen($characters) - 1;
-        for ($i = 0; $i < $length; $i++) {
-            $result .= $characters[random_int(0, $max)];
-        }
-
-        return $result;
+        return $this->doRandom($length, self::NUMERIC_CHARACTERS);
     }
 
     public function alnum($length): string
     {
-        $characters = self::ALPHA_CHARACTERS . self::NUMERIC_CHARACTERS;
-        $result = '';
-        $max = strlen($characters) - 1;
-        for ($i = 0; $i < $length; $i++) {
-            $result .= $characters[random_int(0, $max)];
-        }
-
-        return $result;
+        return $this->doRandom($length, self::ALPHA_CHARACTERS . self::NUMERIC_CHARACTERS);
     }
 
     public function complex(int $length): string
     {
-        $characters = self::ALPHA_CHARACTERS . self::NUMERIC_CHARACTERS . self::SPECIAL_CHARACTERS;
+        return $this->doRandom($length, self::ALPHA_CHARACTERS . self::NUMERIC_CHARACTERS . self::SPECIAL_CHARACTERS);
+    }
+
+    private function doRandom(int $length, string $chars): string
+    {
         $result = '';
-        $max = strlen($characters) - 1;
+        $max = strlen($chars) - 1;
         for ($i = 0; $i < $length; $i++) {
-            $result .= $characters[random_int(0, $max)];
+            $result .= $chars[random_int(0, $max)];
         }
 
         return $result;
