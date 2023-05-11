@@ -98,4 +98,22 @@ class RandomControllerTest extends ApiTestCase
             $this->getContent($response)->data->random
         );
     }
+
+    public function test_given_strategy_complex_then_return_success(): void
+    {
+        $content = <<<'JSON'
+        {
+            "strategy": "complex"
+        }
+        JSON;
+
+        $response = $this->post(self::API_RANDOM_GENERATE_URI, $content);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertResponse($response, statusCode: 201);
+
+        $actual = $this->getContent($response)->data->random;
+
+        $this->assertMatchesRegularExpression('/^[0-9a-zA-Z@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
+    }
 }
