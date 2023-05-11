@@ -21,11 +21,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesAlphaData(): \Generator
     {
-        yield ['/^[a-zA-Z]+/', null];
-        yield ['/^[a-zA-Z]+/', 10];
-        yield ['/^[a-zA-Z]+/', 32];
-        yield ['/^[a-zA-Z]+/', 40];
-        yield ['/^[a-zA-Z]+/', 64];
+        yield ['/^[a-zA-Z]+$/', null];
+        yield ['/^[a-zA-Z]+$/', 10];
+        yield ['/^[a-zA-Z]+$/', 32];
+        yield ['/^[a-zA-Z]+$/', 40];
+        yield ['/^[a-zA-Z]+$/', 64];
     }
 
     /**
@@ -63,11 +63,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesNumericData(): \Generator
     {
-        yield ['/^[0-9]+/', null];
-        yield ['/^[0-9]+/', 10];
-        yield ['/^[0-9]+/', 32];
-        yield ['/^[0-9]+/', 40];
-        yield ['/^[0-9]+/', 64];
+        yield ['/^[0-9]+$/', null];
+        yield ['/^[0-9]+$/', 10];
+        yield ['/^[0-9]+$/', 32];
+        yield ['/^[0-9]+$/', 40];
+        yield ['/^[0-9]+$/', 64];
     }
 
     /**
@@ -103,11 +103,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesAlphaNumericData(): \Generator
     {
-        yield ['/^[a-zA-Z0-9]+/', null];
-        yield ['/^[a-zA-Z0-9]+/', 10];
-        yield ['/^[a-zA-Z0-9]+/', 32];
-        yield ['/^[a-zA-Z0-9]+/', 40];
-        yield ['/^[a-zA-Z0-9]+/', 64];
+        yield ['/^[a-zA-Z0-9]+$/', null];
+        yield ['/^[a-zA-Z0-9]+$/', 10];
+        yield ['/^[a-zA-Z0-9]+$/', 32];
+        yield ['/^[a-zA-Z0-9]+$/', 40];
+        yield ['/^[a-zA-Z0-9]+$/', 64];
     }
 
     /**
