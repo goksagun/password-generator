@@ -27,12 +27,12 @@ class RandomControllerTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponse($response, statusCode: 201);
-        $this->assertLength(40, $this->getContent($response)->data->random);
-        $this->assertDoesNotMatchRegularExpression('/^[0-9]+/', $this->getContent($response)->data->random);
-        $this->assertDoesNotMatchRegularExpression(
-            '/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',
-            $this->getContent($response)->data->random
-        );
+
+        $actual = $this->getContent($response)->data->random;
+
+        $this->assertLength(40, $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[0-9]+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
     }
 
     public function test_given_strategy_alpha_then_return_success()
@@ -47,12 +47,12 @@ class RandomControllerTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponse($response, statusCode: 201);
-        $this->assertMatchesRegularExpression('/^[a-zA-Z]+/', $this->getContent($response)->data->random);
-        $this->assertDoesNotMatchRegularExpression('/^[0-9]+/', $this->getContent($response)->data->random);
-        $this->assertDoesNotMatchRegularExpression(
-            '/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',
-            $this->getContent($response)->data->random
-        );
+
+        $actual = $this->getContent($response)->data->random;
+
+        $this->assertMatchesRegularExpression('/^[a-zA-Z]+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[0-9]+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
     }
 
     public function test_given_strategy_numeric_then_return_success()
@@ -67,12 +67,12 @@ class RandomControllerTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponse($response, statusCode: 201);
-        $this->assertMatchesRegularExpression('/^[0-9]+/', $this->getContent($response)->data->random);
-        $this->assertDoesNotMatchRegularExpression('/^[a-zA-Z]+/', $this->getContent($response)->data->random);
-        $this->assertDoesNotMatchRegularExpression(
-            '/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',
-            $this->getContent($response)->data->random
-        );
+
+        $actual = $this->getContent($response)->data->random;
+
+        $this->assertMatchesRegularExpression('/^[0-9]+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[a-zA-Z]+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
     }
 
     public function test_given_strategy_alphanumeric_then_return_success()
@@ -87,16 +87,11 @@ class RandomControllerTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponse($response, statusCode: 201);
-        $this->assertMatchesRegularExpression(
-            '/^[a-zA-Z0-9]+/',
-            $this->getContent(
-                $response
-            )->data->random
-        );
-        $this->assertDoesNotMatchRegularExpression(
-            '/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',
-            $this->getContent($response)->data->random
-        );
+
+        $actual = $this->getContent($response)->data->random;
+
+        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9]+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
     }
 
     public function test_given_strategy_complex_then_return_success(): void
