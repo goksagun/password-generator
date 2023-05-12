@@ -268,6 +268,52 @@ class RandomGeneratorTest extends TestCase
         yield [64, 64];
     }
 
+    /**
+     * @dataProvider provideGenerateFromMatchesAlphaNumericLowerData
+     */
+    public function testGenerateFromMatchesAlphaNumericLower(string $expected, ?int $length)
+    {
+        $generator = $length
+            ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHANUMERIC_LOWER)
+            : new RandomGenerator(strategy: RandomGenerator::STRATEGY_ALPHANUMERIC_LOWER);
+        $actual = $generator->generate();
+
+        $this->assertMatchesRegularExpression($expected, $actual);
+    }
+
+    public function provideGenerateFromMatchesAlphaNumericLowerData(): \Generator
+    {
+        $pattern = '/^[' . RandomGenerator::ALPHA_LOWER_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
+
+        yield [$pattern, null,];
+        yield [$pattern, 10];
+        yield [$pattern, 32];
+        yield [$pattern, 40];
+        yield [$pattern, 64];
+    }
+
+    /**
+     * @dataProvider provideGenerateFromGivenLengthMatchesAlphaNumericLowerData
+     */
+    public function testGenerateFromGivenLengthMatchesAlphaNumericLower(int $expected, ?int $length)
+    {
+        $generator = $length
+            ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHANUMERIC_LOWER)
+            : new RandomGenerator(strategy: RandomGenerator::STRATEGY_ALPHANUMERIC_LOWER);
+        $actual = $generator->generate();
+
+        $this->assertLength($expected, $actual);
+    }
+
+    public function provideGenerateFromGivenLengthMatchesAlphaNumericLowerData(): \Generator
+    {
+        yield [8, null];
+        yield [10, 10];
+        yield [32, 32];
+        yield [40, 40];
+        yield [64, 64];
+    }
+
     private static function assertLength($excepted, $actual, $message = ''): void
     {
         self::assertEquals($excepted, strlen($actual), $message);

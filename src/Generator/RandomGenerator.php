@@ -37,6 +37,7 @@ class RandomGenerator implements GeneratorInterface
             self::STRATEGY_COMPLEX => $this->complex($this->length),
             self::STRATEGY_ALPHA_LOWER => $this->alphaLower($this->length),
             self::STRATEGY_ALPHA_UPPER => $this->alphaUpper($this->length),
+            self::STRATEGY_ALPHANUMERIC_LOWER => $this->alnumLower($this->length),
         };
     }
 
@@ -79,5 +80,10 @@ class RandomGenerator implements GeneratorInterface
         }
 
         return $result;
+    }
+
+    public function alnumLower(int $length): string
+    {
+        return $this->doRandom($length, self::ALPHA_LOWER_CHARACTERS . self::NUMERIC_CHARACTERS);
     }
 }
