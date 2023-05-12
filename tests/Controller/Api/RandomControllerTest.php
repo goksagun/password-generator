@@ -76,6 +76,26 @@ class RandomControllerTest extends ApiTestCase
         $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
+    public function test_given_strategy_alpha_upper_then_return_success()
+    {
+        $content = <<<'JSON'
+        {
+            "strategy": "alpha-upper"
+        }
+        JSON;
+
+        $response = $this->post(self::API_RANDOM_GENERATE_URI, $content);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertResponse($response, statusCode: 201);
+
+        $actual = $this->getContent($response)->data->random;
+
+        $this->assertMatchesRegularExpression($this->getAlphaUpperRegexPattern(), $actual);
+        $this->assertDoesNotMatchRegularExpression($this->getAlphaLowerRegexPattern(), $actual);
+        $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
+    }
+
     public function test_given_strategy_numeric_then_return_success()
     {
         $content = <<<'JSON'
