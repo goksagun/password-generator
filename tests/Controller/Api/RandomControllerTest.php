@@ -30,11 +30,10 @@ class RandomControllerTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertResponse($response, statusCode: 201);
 
-        $actual = $this->getContent($response)->data->random;
+        $actual = $this->getContent($response)->data->random; // VU8OLYXgd2S9uuyd2fH5SM31WcolTPeQDKQW6ELu
 
         $this->assertLength(40, $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::ALPHA_CHARACTERS . ']+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
     public function test_given_strategy_alpha_then_return_success()
@@ -52,9 +51,9 @@ class RandomControllerTest extends ApiTestCase
 
         $actual = $this->getContent($response)->data->random;
 
-        $this->assertMatchesRegularExpression('/^[' . RandomGenerator::ALPHA_CHARACTERS . ']+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::NUMERIC_CHARACTERS . ']+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/', $actual);
+        $this->assertMatchesRegularExpression($this->getAlphaRegexPattern(), $actual);
+        $this->assertDoesNotMatchRegularExpression($this->getNumericRegexPattern(), $actual);
+        $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
     public function test_given_strategy_numeric_then_return_success()
@@ -72,9 +71,9 @@ class RandomControllerTest extends ApiTestCase
 
         $actual = $this->getContent($response)->data->random;
 
-        $this->assertMatchesRegularExpression('/^[' . RandomGenerator::NUMERIC_CHARACTERS . ']+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::ALPHA_CHARACTERS . ']+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/', $actual);
+        $this->assertMatchesRegularExpression($this->getNumericRegexPattern(), $actual);
+        $this->assertDoesNotMatchRegularExpression($this->getAlphaRegexPattern(), $actual);
+        $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
     public function test_given_strategy_alphanumeric_then_return_success()
@@ -92,11 +91,8 @@ class RandomControllerTest extends ApiTestCase
 
         $actual = $this->getContent($response)->data->random;
 
-        $this->assertMatchesRegularExpression(
-            '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/',
-            $actual
-        );
-        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/', $actual);
+        $this->assertMatchesRegularExpression($this->getAlnumRegexPattern(), $actual);
+        $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
     public function test_given_strategy_complex_then_return_success(): void
@@ -114,9 +110,31 @@ class RandomControllerTest extends ApiTestCase
 
         $actual = $this->getContent($response)->data->random;
 
-        $this->assertMatchesRegularExpression(
-            '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/',
-            $actual
-        );
+        $this->assertMatchesRegularExpression($this->getComplexRegexPattern(), $actual);
+    }
+
+    private function getAlphaRegexPattern(): string
+    {
+        return '/^[' . RandomGenerator::ALPHA_CHARACTERS . ']+$/';
+    }
+
+    private function getSpecialRegexPattern(): string
+    {
+        return '/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/';
+    }
+
+    private function getNumericRegexPattern(): string
+    {
+        return '/^[' . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
+    }
+
+    private function getAlnumRegexPattern(): string
+    {
+        return '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
+    }
+
+    private function getComplexRegexPattern(): string
+    {
+        return '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/';
     }
 }
