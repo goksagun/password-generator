@@ -2,6 +2,8 @@
 
 namespace App\Tests\Controller\Api;
 
+use App\Generator\RandomGenerator;
+
 class RandomControllerTest extends ApiTestCase
 {
     protected const API_RANDOM_GENERATE_URI = '/api/random/generate';
@@ -31,8 +33,8 @@ class RandomControllerTest extends ApiTestCase
         $actual = $this->getContent($response)->data->random;
 
         $this->assertLength(40, $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[0-9]+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::ALPHA_CHARACTERS . ']+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/', $actual);
     }
 
     public function test_given_strategy_alpha_then_return_success()
@@ -50,9 +52,9 @@ class RandomControllerTest extends ApiTestCase
 
         $actual = $this->getContent($response)->data->random;
 
-        $this->assertMatchesRegularExpression('/^[a-zA-Z]+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[0-9]+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
+        $this->assertMatchesRegularExpression('/^[' . RandomGenerator::ALPHA_CHARACTERS . ']+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::NUMERIC_CHARACTERS . ']+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/', $actual);
     }
 
     public function test_given_strategy_numeric_then_return_success()
@@ -70,9 +72,9 @@ class RandomControllerTest extends ApiTestCase
 
         $actual = $this->getContent($response)->data->random;
 
-        $this->assertMatchesRegularExpression('/^[0-9]+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[a-zA-Z]+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
+        $this->assertMatchesRegularExpression('/^[' . RandomGenerator::NUMERIC_CHARACTERS . ']+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::ALPHA_CHARACTERS . ']+$/', $actual);
+        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/', $actual);
     }
 
     public function test_given_strategy_alphanumeric_then_return_success()
@@ -90,8 +92,11 @@ class RandomControllerTest extends ApiTestCase
 
         $actual = $this->getContent($response)->data->random;
 
-        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9]+$/', $actual);
-        $this->assertDoesNotMatchRegularExpression('/^[@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
+        $this->assertMatchesRegularExpression(
+            '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/',
+            $actual
+        );
+        $this->assertDoesNotMatchRegularExpression('/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/', $actual);
     }
 
     public function test_given_strategy_complex_then_return_success(): void
@@ -109,6 +114,9 @@ class RandomControllerTest extends ApiTestCase
 
         $actual = $this->getContent($response)->data->random;
 
-        $this->assertMatchesRegularExpression('/^[0-9a-zA-Z@_!#$%^&*()<>?\/|}{~:\]]+$/', $actual);
+        $this->assertMatchesRegularExpression(
+            '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/',
+            $actual
+        );
     }
 }
