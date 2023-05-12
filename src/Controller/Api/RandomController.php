@@ -22,6 +22,7 @@ class RandomController extends AbstractController
             'alpha-lower' => RandomGenerator::STRATEGY_ALPHA_LOWER,
             'alpha-upper' => RandomGenerator::STRATEGY_ALPHA_UPPER,
             'alphanumeric-lower' => RandomGenerator::STRATEGY_ALPHANUMERIC_LOWER,
+            'alphanumeric-upper' => RandomGenerator::STRATEGY_ALPHANUMERIC_UPPER,
             default => RandomGenerator::STRATEGY_ALPHA_NUMERIC,
         };
         $length = $request->get('length', RandomGenerator::DEFAULT_LENGTH);

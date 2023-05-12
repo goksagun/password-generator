@@ -314,6 +314,52 @@ class RandomGeneratorTest extends TestCase
         yield [64, 64];
     }
 
+    /**
+     * @dataProvider provideGenerateFromMatchesAlphaNumericUpperData
+     */
+    public function testGenerateFromMatchesAlphaNumericUpper(string $expected, ?int $length)
+    {
+        $generator = $length
+            ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHANUMERIC_UPPER)
+            : new RandomGenerator(strategy: RandomGenerator::STRATEGY_ALPHANUMERIC_UPPER);
+        $actual = $generator->generate();
+
+        $this->assertMatchesRegularExpression($expected, $actual);
+    }
+
+    public function provideGenerateFromMatchesAlphaNumericUpperData(): \Generator
+    {
+        $pattern = '/^[' . RandomGenerator::ALPHA_UPPER_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
+
+        yield [$pattern, null,];
+        yield [$pattern, 10];
+        yield [$pattern, 32];
+        yield [$pattern, 40];
+        yield [$pattern, 64];
+    }
+
+    /**
+     * @dataProvider provideGenerateFromGivenLengthMatchesAlphaNumericUpperData
+     */
+    public function testGenerateFromGivenLengthMatchesAlphaNumericUpper(int $expected, ?int $length)
+    {
+        $generator = $length
+            ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHANUMERIC_UPPER)
+            : new RandomGenerator(strategy: RandomGenerator::STRATEGY_ALPHANUMERIC_UPPER);
+        $actual = $generator->generate();
+
+        $this->assertLength($expected, $actual);
+    }
+
+    public function provideGenerateFromGivenLengthMatchesAlphaNumericUpperData(): \Generator
+    {
+        yield [8, null];
+        yield [10, 10];
+        yield [32, 32];
+        yield [40, 40];
+        yield [64, 64];
+    }
+
     private static function assertLength($excepted, $actual, $message = ''): void
     {
         self::assertEquals($excepted, strlen($actual), $message);
