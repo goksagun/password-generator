@@ -11,9 +11,10 @@ class RandomGenerator implements GeneratorInterface
 
     public const DEFAULT_LENGTH = 8;
 
-    private const ALPHA_CHARACTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    private const NUMERIC_CHARACTERS = '0123456789';
-    private const SPECIAL_CHARACTERS = '[@_!#$%^&*()<>?/|}{~:]';
+    public const ALPHA_CHARACTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    public const NUMERIC_CHARACTERS = '0123456789';
+    public const SPECIAL_CHARACTERS = '][}{@_!#$%^&*()<>?|~:';
+    public const SPECIAL_CHARACTERS_REGEX = '\]\[}{@_!#$%^&*()<>?|~:';
 
     public function __construct(
         private readonly int $length = self::DEFAULT_LENGTH,

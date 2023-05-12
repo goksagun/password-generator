@@ -145,11 +145,13 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesComplexData(): \Generator
     {
-        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', null];
-        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', 10];
-        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', 32];
-        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', 40];
-        yield ['/^[a-zA-Z0-9\[@_!#$%^&*()<>?\/|}{~:\]]+$/', 64];
+        $pattern = '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/';
+
+        yield [$pattern, null,];
+        yield [$pattern, 10];
+        yield [$pattern, 32];
+        yield [$pattern, 40];
+        yield [$pattern, 64];
     }
 
     /**
