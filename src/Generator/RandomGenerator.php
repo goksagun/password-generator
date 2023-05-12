@@ -72,6 +72,16 @@ class RandomGenerator implements GeneratorInterface
         return $this->doRandom($length, self::ALPHA_UPPER_CHARACTERS);
     }
 
+    public function alnumLower(int $length): string
+    {
+        return $this->doRandom($length, self::ALPHA_LOWER_CHARACTERS . self::NUMERIC_CHARACTERS);
+    }
+
+    public function alnumUpper(int $length): string
+    {
+        return $this->doRandom($length, self::ALPHA_UPPER_CHARACTERS . self::NUMERIC_CHARACTERS);
+    }
+
     private function doRandom(int $length, string $chars): string
     {
         $result = '';
@@ -81,15 +91,5 @@ class RandomGenerator implements GeneratorInterface
         }
 
         return $result;
-    }
-
-    public function alnumLower(int $length): string
-    {
-        return $this->doRandom($length, self::ALPHA_LOWER_CHARACTERS . self::NUMERIC_CHARACTERS);
-    }
-
-    public function alnumUpper(int $length): string
-    {
-        return $this->doRandom($length, self::ALPHA_UPPER_CHARACTERS . self::NUMERIC_CHARACTERS);
     }
 }
