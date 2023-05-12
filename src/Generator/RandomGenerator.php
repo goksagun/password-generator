@@ -8,10 +8,16 @@ class RandomGenerator implements GeneratorInterface
     public const STRATEGY_ALPHA = 1;
     public const STRATEGY_NUMERIC = 2;
     public const STRATEGY_COMPLEX = 3;
+    public const STRATEGY_ALPHA_LOWER = 4;
+    public const STRATEGY_ALPHA_UPPER = 5;
+    public const STRATEGY_ALPHANUMERIC_LOWER = 6;
+    public const STRATEGY_ALPHANUMERIC_UPPER = 7;
 
     public const DEFAULT_LENGTH = 8;
 
     public const ALPHA_CHARACTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    public const ALPHA_LOWER_CHARACTERS = 'abcdefghijklmnopqrstuvwxyz';
+    public const ALPHA_UPPER_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     public const NUMERIC_CHARACTERS = '0123456789';
     public const SPECIAL_CHARACTERS = '][}{@_!#$%^&*()<>?|~:';
     public const SPECIAL_CHARACTERS_REGEX = '\]\[}{@_!#$%^&*()<>?|~:';
@@ -25,10 +31,11 @@ class RandomGenerator implements GeneratorInterface
     public function generate(): string
     {
         return match ($this->strategy) {
-            self::STRATEGY_COMPLEX => $this->complex($this->length),
-            self::STRATEGY_ALPHA_NUMERIC => $this->alnum($this->length),
             self::STRATEGY_ALPHA => $this->alpha($this->length),
             self::STRATEGY_NUMERIC => $this->numeric($this->length),
+            self::STRATEGY_ALPHA_NUMERIC => $this->alnum($this->length),
+            self::STRATEGY_COMPLEX => $this->complex($this->length),
+            self::STRATEGY_ALPHA_LOWER => $this->alphaLower($this->length),
         };
     }
 
@@ -50,6 +57,11 @@ class RandomGenerator implements GeneratorInterface
     public function complex(int $length): string
     {
         return $this->doRandom($length, self::ALPHA_CHARACTERS . self::NUMERIC_CHARACTERS . self::SPECIAL_CHARACTERS);
+    }
+
+    public function alphaLower(int $length): string
+    {
+        return $this->doRandom($length, self::ALPHA_LOWER_CHARACTERS);
     }
 
     private function doRandom(int $length, string $chars): string

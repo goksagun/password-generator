@@ -18,6 +18,8 @@ class RandomController extends AbstractController
         $strategy = match ($request->get('strategy')) {
             'alpha' => RandomGenerator::STRATEGY_ALPHA,
             'numeric' => RandomGenerator::STRATEGY_NUMERIC,
+            'complex' => RandomGenerator::STRATEGY_COMPLEX,
+            'alpha-lower' => RandomGenerator::STRATEGY_ALPHA_LOWER,
             default => RandomGenerator::STRATEGY_ALPHA_NUMERIC,
         };
         $length = $request->get('length', RandomGenerator::DEFAULT_LENGTH);
