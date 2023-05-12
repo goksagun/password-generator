@@ -10,7 +10,7 @@ class RandomControllerTest extends ApiTestCase
 
     public function test_given_none_then_return_success(): void
     {
-        $response = $this->request('POST', self::API_RANDOM_GENERATE_URI);
+        $response = $this->post(self::API_RANDOM_GENERATE_URI);
 
         $this->assertResponseIsSuccessful();
         $this->assertResponse($response, statusCode: 201);
@@ -118,14 +118,14 @@ class RandomControllerTest extends ApiTestCase
         return '/^[' . RandomGenerator::ALPHA_CHARACTERS . ']+$/';
     }
 
-    private function getSpecialRegexPattern(): string
-    {
-        return '/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/';
-    }
-
     private function getNumericRegexPattern(): string
     {
         return '/^[' . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
+    }
+
+    private function getSpecialRegexPattern(): string
+    {
+        return '/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/';
     }
 
     private function getAlnumRegexPattern(): string
