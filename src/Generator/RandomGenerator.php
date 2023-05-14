@@ -19,8 +19,8 @@ class RandomGenerator implements GeneratorInterface
     public const ALPHA_LOWER_CHARACTERS = 'abcdefghijklmnopqrstuvwxyz';
     public const ALPHA_UPPER_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     public const ALPHA_CHARACTERS = self::ALPHA_LOWER_CHARACTERS . self::ALPHA_UPPER_CHARACTERS;
-    public const SPECIAL_CHARACTERS = '][}{@_!#$%^&*()<>?|~:';
-    public const SPECIAL_CHARACTERS_REGEX = '\]\[}{@_!#$%^&*()<>?|~:';
+    public const SPECIAL_CHARACTERS = '][}{@_!#$%^&*()<>?|~:;=-';
+    public const SPECIAL_CHARACTERS_REGEX = '\]\[}{@_!#$%^&*()<>?|~:;=-';
 
     public function __construct(
         private readonly int $length = self::DEFAULT_LENGTH,
