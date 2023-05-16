@@ -2,7 +2,7 @@
     <div class="grid gap-6 mb-6 md:grid-cols-2">
         <div>
             <label for="length" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Length</label>
-            <input type="number" name="length" id="length" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required
+            <input type="number" name="length" id="length" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" max="64" required
                    data-model="norender|length"
             >
         </div>
@@ -11,20 +11,20 @@
             <select name="strategy" id="strategy" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     data-model="norender|strategy"
             >
-                <option value="0" selected>Alpha-numeric</option>
+                <option value="0" selected>Alphanumeric</option>
                 <option value="1">Alpha</option>
                 <option value="2">Numeric</option>
                 <option value="3">Complex</option>
                 <option value="4">Alpha Lower</option>
                 <option value="5">Alpha Upper</option>
-                <option value="6">Alpha-numeric Lower</option>
-                <option value="7">Alpha-numeric Upper</option>
+                <option value="6">Alphanumeric Lower</option>
+                <option value="7">Alphanumeric Upper</option>
             </select>
         </div>
     </div>
 
-    <div class="p-4 mb-4 text-blue-800 border-blue-300 dark:border-gray-600 border-4 rounded-lg bg-blue-50 dark:bg-gray-800">
-        <p class="text-lg justify-center font-bold text-blue-800 dark:text-gray-400">{{ this.random }}</p>
+    <div class="p-4 mb-4 text-center text-blue-800 border-blue-300 dark:border-gray-600 border-4 rounded-lg bg-blue-50 dark:bg-gray-800">
+        <p class="text-lg justify-center text-blue-800 dark:text-gray-400">{{ this.random }}</p>
     </div>
 
     <div class="text-center">

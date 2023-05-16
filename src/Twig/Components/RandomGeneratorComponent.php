@@ -16,6 +16,8 @@ final class RandomGeneratorComponent implements LoggerAwareInterface
     use LoggerAwareTrait;
     use DefaultActionTrait;
 
+    private const MAX_LENGTH = 64;
+
     #[LiveProp(writable: true)]
     public int $length = RandomGenerator::DEFAULT_LENGTH;
     #[LiveProp(writable: true)]
@@ -27,7 +29,10 @@ final class RandomGeneratorComponent implements LoggerAwareInterface
 
     public function getRandom(): string
     {
-        $this->logger->debug('Strategy is: ' . $this->strategy);
+        if ($this->length > self::MAX_LENGTH) {
+            $this->length = self::MAX_LENGTH;
+        }
+
         return $this->generator->generate($this->length, $this->strategy);
     }
 }
