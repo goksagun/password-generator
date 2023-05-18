@@ -30,7 +30,7 @@ class RandomControllerTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertResponse($response, statusCode: 201);
 
-        $actual = $this->getContent($response)->data->random; // VU8OLYXgd2S9uuyd2fH5SM31WcolTPeQDKQW6ELu
+        $actual = $this->getContent($response)->data->random;
 
         $this->assertLength(40, $actual);
         $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
@@ -195,46 +195,46 @@ class RandomControllerTest extends ApiTestCase
 
     private function getAlphaRegexPattern(): string
     {
-        return '/^[' . RandomGenerator::ALPHA_CHARACTERS . ']+$/';
+        return '/^[a-zA-Z]+$/';
     }
 
     private function getAlphaLowerRegexPattern(): string
     {
-        return '/^[' . RandomGenerator::ALPHA_LOWER_CHARACTERS . ']+$/';
+        return '/^[a-z]+$/';
     }
 
     private function getAlphaUpperRegexPattern(): string
     {
-        return '/^[' . RandomGenerator::ALPHA_UPPER_CHARACTERS . ']+$/';
+        return '/^[A-Z]+$/';
     }
 
     private function getNumericRegexPattern(): string
     {
-        return '/^[' . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
+        return '/^[0-9]+$/';
     }
 
     private function getSpecialRegexPattern(): string
     {
-        return '/^[' . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/';
+        return '/^[\]\[}{@_!#$%^&*()<>?|~:;=\-+]+$/';
     }
 
     private function getAlnumRegexPattern(): string
     {
-        return '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
+        return '/^[a-zA-Z0-9]+$/';
     }
 
     private function getComplexRegexPattern(): string
     {
-        return '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/';
+        return '/^[a-zA-Z0-9\]\[}{@_!#$%^&*()<>?|~:;=\-+]+$/';
     }
 
     private function getAlphaNumericLowerRegexPattern(): string
     {
-        return    '/^[' . RandomGenerator::ALPHA_LOWER_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
+        return    '/^[a-z0-9]+$/';
     }
 
     private function getAlphaNumericUpperRegexPattern(): string
     {
-        return    '/^[' . RandomGenerator::ALPHA_UPPER_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
+        return    '/^[A-Z0-9]+$/';
     }
 }

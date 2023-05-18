@@ -20,13 +20,6 @@ class RandomGenerator implements GeneratorInterface
 
     public const DEFAULT_LENGTH = 8;
 
-    public const NUMERIC_CHARACTERS = '0123456789'; // [0-9]
-    public const ALPHA_LOWER_CHARACTERS = 'abcdefghijklmnopqrstuvwxyz'; // [a-z]
-    public const ALPHA_UPPER_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // [A-Z]
-    public const ALPHA_CHARACTERS = self::ALPHA_LOWER_CHARACTERS . self::ALPHA_UPPER_CHARACTERS;
-    public const SPECIAL_CHARACTERS = '][}{@_!#$%^&*()<>?|~:;=-+'; // \]\[}{@_!#$%^&*()<>?|~:;=- -> preg quoted -> \]\[\}\{@_\!\#\$%\^&\*\(\)\<\>\?\|~\:;\=\-
-    public const SPECIAL_CHARACTERS_REGEX = '\]\[\}\{\|\@\_\!\#\$\%\^\&\*\(\)\<\>\?\~\:\;\=\-\+';
-
     /**
      * @var GeneratorInterface[]
      */
