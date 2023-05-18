@@ -11,8 +11,9 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaData
      */
-    public function testGenerateFromMatchesAlpha(string $expected, ?int $length)
+    public function testGenerateFromMatchesAlpha(?int $length)
     {
+        $expected = '/^[a-zA-Z]+$/';
         $generator = $this->getRandomGenerator($length, RandomGenerator::STRATEGY_ALPHA);
         $actual = $generator->generate();
 
@@ -21,11 +22,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesAlphaData(): \Generator
     {
-        yield ['/^[a-zA-Z]+$/', null];
-        yield ['/^[a-zA-Z]+$/', 10];
-        yield ['/^[a-zA-Z]+$/', 32];
-        yield ['/^[a-zA-Z]+$/', 40];
-        yield ['/^[a-zA-Z]+$/', 64];
+        yield [null];
+        yield [10];
+        yield [32];
+        yield [40];
+        yield [64];
     }
 
     /**
@@ -51,8 +52,9 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesNumericData
      */
-    public function testGenerateFromMatchesNumeric(string $expected, ?int $length)
+    public function testGenerateFromMatchesNumeric(?int $length)
     {
+        $expected = '/^[0-9]+$/';
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_NUMERIC)
             : new RandomGenerator(strategy: RandomGenerator::STRATEGY_NUMERIC);
@@ -63,11 +65,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesNumericData(): \Generator
     {
-        yield ['/^[0-9]+$/', null];
-        yield ['/^[0-9]+$/', 10];
-        yield ['/^[0-9]+$/', 32];
-        yield ['/^[0-9]+$/', 40];
-        yield ['/^[0-9]+$/', 64];
+        yield [null];
+        yield [10];
+        yield [32];
+        yield [40];
+        yield [64];
     }
 
     /**
@@ -93,8 +95,9 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaNumericData
      */
-    public function testGenerateFromMatchesAlphaNumeric(string $expected, ?int $length)
+    public function testGenerateFromMatchesAlphaNumeric(?int $length)
     {
+        $expected = '/^[a-zA-Z0-9]+$/';
         $generator = $length ? new RandomGenerator($length) : new RandomGenerator();
         $actual = $generator->generate();
 
@@ -103,11 +106,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesAlphaNumericData(): \Generator
     {
-        yield ['/^[a-zA-Z0-9]+$/', null];
-        yield ['/^[a-zA-Z0-9]+$/', 10];
-        yield ['/^[a-zA-Z0-9]+$/', 32];
-        yield ['/^[a-zA-Z0-9]+$/', 40];
-        yield ['/^[a-zA-Z0-9]+$/', 64];
+        yield [null];
+        yield [10];
+        yield [32];
+        yield [40];
+        yield [64];
     }
 
     /**
@@ -133,25 +136,26 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesComplexData
      */
-    public function testGenerateFromMatchesComplex(string $expected, ?int $length)
+    public function testGenerateFromMatchesComplex(?int $length)
     {
+        $expected = '/^[a-zA-Z0-9\]\[}{@_!#$%^&*()<>?|~:;=\-+]+$/';
+
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_COMPLEX)
             : new RandomGenerator(strategy: RandomGenerator::STRATEGY_COMPLEX);
         $actual = $generator->generate();
+
 
         $this->assertMatchesRegularExpression($expected, $actual);
     }
 
     public function provideGenerateFromMatchesComplexData(): \Generator
     {
-        $pattern = '/^[' . RandomGenerator::ALPHA_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . RandomGenerator::SPECIAL_CHARACTERS_REGEX . ']+$/';
-
-        yield [$pattern, null,];
-        yield [$pattern, 10];
-        yield [$pattern, 32];
-        yield [$pattern, 40];
-        yield [$pattern, 64];
+        yield [null,];
+        yield [10];
+        yield [32];
+        yield [40];
+        yield [64];
     }
 
     /**
@@ -179,8 +183,9 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaLowerData
      */
-    public function testGenerateFromMatchesAlphaLower(string $expected, ?int $length)
+    public function testGenerateFromMatchesAlphaLower(?int $length)
     {
+        $expected = '/^[a-z]+$/';
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHA_LOWER)
             : new RandomGenerator(strategy: RandomGenerator::STRATEGY_ALPHA_LOWER);
@@ -191,13 +196,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesAlphaLowerData(): \Generator
     {
-        $pattern = '/^[' . RandomGenerator::ALPHA_LOWER_CHARACTERS . ']+$/';
-
-        yield [$pattern, null,];
-        yield [$pattern, 10];
-        yield [$pattern, 32];
-        yield [$pattern, 40];
-        yield [$pattern, 64];
+        yield [null,];
+        yield [10];
+        yield [32];
+        yield [40];
+        yield [64];
     }
 
     /**
@@ -225,8 +228,9 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaUpperData
      */
-    public function testGenerateFromMatchesAlphaUpper(string $expected, ?int $length)
+    public function testGenerateFromMatchesAlphaUpper(?int $length)
     {
+        $expected = '/^[A-Z]+$/';
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHA_UPPER)
             : new RandomGenerator(strategy: RandomGenerator::STRATEGY_ALPHA_UPPER);
@@ -237,13 +241,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesAlphaUpperData(): \Generator
     {
-        $pattern = '/^[' . RandomGenerator::ALPHA_UPPER_CHARACTERS . ']+$/';
-
-        yield [$pattern, null,];
-        yield [$pattern, 10];
-        yield [$pattern, 32];
-        yield [$pattern, 40];
-        yield [$pattern, 64];
+        yield [null,];
+        yield [10];
+        yield [32];
+        yield [40];
+        yield [64];
     }
 
     /**
@@ -271,8 +273,9 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaNumericLowerData
      */
-    public function testGenerateFromMatchesAlphaNumericLower(string $expected, ?int $length)
+    public function testGenerateFromMatchesAlphaNumericLower(?int $length)
     {
+        $expected = '/^[a-zA-Z0-9]+$/';
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHANUMERIC_LOWER)
             : new RandomGenerator(strategy: RandomGenerator::STRATEGY_ALPHANUMERIC_LOWER);
@@ -283,13 +286,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesAlphaNumericLowerData(): \Generator
     {
-        $pattern = '/^[' . RandomGenerator::ALPHA_LOWER_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
-
-        yield [$pattern, null,];
-        yield [$pattern, 10];
-        yield [$pattern, 32];
-        yield [$pattern, 40];
-        yield [$pattern, 64];
+        yield [null,];
+        yield [10];
+        yield [32];
+        yield [40];
+        yield [64];
     }
 
     /**
@@ -317,8 +318,9 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaNumericUpperData
      */
-    public function testGenerateFromMatchesAlphaNumericUpper(string $expected, ?int $length)
+    public function testGenerateFromMatchesAlphaNumericUpper(?int $length)
     {
+        $expected = '/^[A-Z0-9]+$/';
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHANUMERIC_UPPER)
             : new RandomGenerator(strategy: RandomGenerator::STRATEGY_ALPHANUMERIC_UPPER);
@@ -329,13 +331,11 @@ class RandomGeneratorTest extends TestCase
 
     public function provideGenerateFromMatchesAlphaNumericUpperData(): \Generator
     {
-        $pattern = '/^[' . RandomGenerator::ALPHA_UPPER_CHARACTERS . RandomGenerator::NUMERIC_CHARACTERS . ']+$/';
-
-        yield [$pattern, null,];
-        yield [$pattern, 10];
-        yield [$pattern, 32];
-        yield [$pattern, 40];
-        yield [$pattern, 64];
+        yield [null,];
+        yield [10];
+        yield [32];
+        yield [40];
+        yield [64];
     }
 
     /**

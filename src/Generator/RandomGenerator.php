@@ -2,6 +2,11 @@
 
 namespace App\Generator;
 
+use App\Generator\RandomGenerator\AlphaLowerGenerator;
+use App\Generator\RandomGenerator\AlphaUpperGenerator;
+use App\Generator\RandomGenerator\NumericGenerator;
+use App\Generator\RandomGenerator\SpecialGenerator;
+
 class RandomGenerator implements GeneratorInterface
 {
     public const STRATEGY_ALPHA_NUMERIC = 0;
@@ -15,81 +20,71 @@ class RandomGenerator implements GeneratorInterface
 
     public const DEFAULT_LENGTH = 8;
 
-    public const NUMERIC_CHARACTERS = '0123456789'; // [0-9]
-    public const ALPHA_LOWER_CHARACTERS = 'abcdefghijklmnopqrstuvwxyz'; // [a-z]
-    public const ALPHA_UPPER_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // [A-Z]
-    public const ALPHA_CHARACTERS = self::ALPHA_LOWER_CHARACTERS . self::ALPHA_UPPER_CHARACTERS;
-    public const SPECIAL_CHARACTERS = '][}{@_!#$%^&*()<>?|~:;=-+'; // \]\[}{@_!#$%^&*()<>?|~:;=- -> preg quoted -> \]\[\}\{@_\!\#\$%\^&\*\(\)\<\>\?\|~\:;\=\-
-    public const SPECIAL_CHARACTERS_REGEX = '\]\[\}\{\|\@\_\!\#\$\%\^\&\*\(\)\<\>\?\~\:\;\=\-\+';
+    /**
+     * @var GeneratorInterface[]
+     */
+    private iterable $generators;
 
     public function __construct(
         private readonly int $length = self::DEFAULT_LENGTH,
         private readonly int $strategy = self::STRATEGY_ALPHA_NUMERIC
     ) {
+        $this->arrangeGenerators();
     }
+
 
     public function generate(): string
     {
-        return match ($this->strategy) {
-            self::STRATEGY_ALPHA => $this->alpha($this->length),
-            self::STRATEGY_NUMERIC => $this->numeric($this->length),
-            self::STRATEGY_ALPHA_NUMERIC => $this->alnum($this->length),
-            self::STRATEGY_COMPLEX => $this->complex($this->length),
-            self::STRATEGY_ALPHA_LOWER => $this->alphaLower($this->length),
-            self::STRATEGY_ALPHA_UPPER => $this->alphaUpper($this->length),
-            self::STRATEGY_ALPHANUMERIC_LOWER => $this->alnumLower($this->length),
-            self::STRATEGY_ALPHANUMERIC_UPPER => $this->alnumUpper($this->length),
-        };
-    }
-
-    public function alpha($length): string
-    {
-        return $this->doRandom($length, self::ALPHA_CHARACTERS);
-    }
-
-    public function numeric($length): string
-    {
-        return $this->doRandom($length, self::NUMERIC_CHARACTERS);
-    }
-
-    public function alnum($length): string
-    {
-        return $this->doRandom($length, self::ALPHA_CHARACTERS . self::NUMERIC_CHARACTERS);
-    }
-
-    public function complex(int $length): string
-    {
-        return $this->doRandom($length, self::ALPHA_CHARACTERS . self::NUMERIC_CHARACTERS . self::SPECIAL_CHARACTERS);
-    }
-
-    public function alphaLower(int $length): string
-    {
-        return $this->doRandom($length, self::ALPHA_LOWER_CHARACTERS);
-    }
-
-    public function alphaUpper(int $length): string
-    {
-        return $this->doRandom($length, self::ALPHA_UPPER_CHARACTERS);
-    }
-
-    public function alnumLower(int $length): string
-    {
-        return $this->doRandom($length, self::ALPHA_LOWER_CHARACTERS . self::NUMERIC_CHARACTERS);
-    }
-
-    public function alnumUpper(int $length): string
-    {
-        return $this->doRandom($length, self::ALPHA_UPPER_CHARACTERS . self::NUMERIC_CHARACTERS);
-    }
-
-    private function doRandom(int $length, string $chars): string
-    {
         $result = '';
-        $max = strlen($chars) - 1;
-        for ($i = 0; $i < $length; $i++) {
-            $result .= $chars[random_int(0, $max)];
+        for ($i = 0; $i < $this->length; $i++) {
+            $generator = $this->getRandomGenerator();
+
+            $result .= $generator->generate();
         }
 
         return $result;
+    }
+
+    private function getRandomGenerator(): mixed
+    {
+        return $this->generators[array_rand($this->generators)];
+    }
+
+    private function arrangeGenerators(): void
+    {
+        $this->generators = match ($this->strategy) {
+            self::STRATEGY_ALPHA => [
+                new AlphaLowerGenerator(),
+                new AlphaUpperGenerator(),
+            ],
+            self::STRATEGY_NUMERIC => [
+                new NumericGenerator(),
+            ],
+            self::STRATEGY_ALPHA_NUMERIC => [
+                new AlphaLowerGenerator(),
+                new AlphaUpperGenerator(),
+                new NumericGenerator(),
+            ],
+            self::STRATEGY_COMPLEX => [
+                new AlphaLowerGenerator(),
+                new AlphaUpperGenerator(),
+                new NumericGenerator(),
+                new SpecialGenerator(),
+            ],
+            self::STRATEGY_ALPHA_LOWER => [
+                new AlphaLowerGenerator(),
+            ],
+            self::STRATEGY_ALPHA_UPPER => [
+                new AlphaUpperGenerator(),
+            ],
+            self::STRATEGY_ALPHANUMERIC_LOWER => [
+                new AlphaLowerGenerator(),
+                new NumericGenerator(),
+            ],
+            self::STRATEGY_ALPHANUMERIC_UPPER => [
+                new AlphaUpperGenerator(),
+                new NumericGenerator(),
+            ],
+        };
     }
 }
