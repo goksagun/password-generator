@@ -1,0 +1,12 @@
+{
+  "error": {
+    "code": 4220,
+    "message": "Unprocessable entity",
+    "errors": [
+      {
+        "path": "[phrase]",
+        "message": "This field is missing."
+      }
+    ]
+  }
+}

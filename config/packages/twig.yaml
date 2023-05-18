@@ -1,0 +1,9 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    globals:
+        company_name: LokiPass
+        company_name_short: LokiPass
+
+when@test:
+    twig:
+        strict_variables: true

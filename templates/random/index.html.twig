@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Random Password Generator{% endblock %}
+
+{% block body %}
+    <section class="bg-white dark:bg-gray-900 min-h-screen">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12">
+            {% for label, messages in app.flashes(['warning', 'error']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            <div class="text-center">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Create Random Secure and Strong Password</h1>
+                <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 hidden md:block">Passwords have become a big part of our lives in the digital age. We use them, so often it is easy to overlook the importance of creating a strong one. You can generate random secure password with some additional choices.</p>
+            </div>
+
+            <div class="px-4 mx-auto md:max-w-screen-md lg:max-w-screen-lg lg:px-36">
+                <div class="flex flex-wrap mt-8 text-gray-500 sm:justify-between">
+                    {{ component('random_generator') }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

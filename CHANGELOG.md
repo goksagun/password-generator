@@ -1,0 +1,103 @@
+## 0.3.0 (May 18, 2023)
+  - Extract method arrangeGenerators
+  - Fix random page form placeholder value
+  - Change rand_int with array_rand in getRandomGenerator
+  - Extract method getRandomGenerator
+  - Remove duplicated constants
+  - Extract class from methods
+  - Replace regex pattern short ones
+  - Fix about page template base directory path error
+  - Add about page
+  - Rename DefaultController as HomeController
+  - Improve random generator page
+  - Add random generator page
+  - Improve random generator
+  - Add missing special chars like ";=-"
+  - Improve const definitions
+  - Update dependencies
+  - Sort order methods
+  - Add alphanumeric-upper generator
+  - Add alphanumeric-lower generator
+  - Add alpha-upper generator
+  - Add alpha-lower generator
+  - Refactor re-order methods
+  - Refactor extract method regex patterns
+  - Refactor regex matcher
+  - Remove forward and back slashes from complex generator
+  - Add missing regex pattern end limiter
+  - Add complex random string generate test
+  - Add regex pattern missing end limiter
+  - Refactor random generator remove redundant codes
+  - Add complex random generator method
+  - Add random generator components
+  - Add helper methods to base test class
+  - Rename Password prefix to Acronym
+  - Remove class route annotation
+  - Rename controller name
+  - Use base api test class
+  - Create base api test class
+  - Improve template design
+  - Implement new AcronymGenerator
+  - Add RandomGenerator class
+  - Extract method getAcronym
+  - Refactor improve method convertToSpecialCharacter
+  - Extract method convertToSpecialCharacter
+  - Extract method getFirstAlphaNumericCharacter
+  - Sort order methods and fix naming is_html helper method
+  - Inline variable $phrase
+  - Refactor use preg_split instead of explode
+  - Extract method splitPhraseIntoWords
+  - Extract method validatePhrase
+  - Rename method to generateAcronymFromPhrase
+  - Change acronym generator class
+  - Change company name
+  - Update docker file
+  - Update composer dependencies
+  - Implement VersionInterface
+  - Implement VersionService for twig extension
+  - Add version service
+
+## 0.2.1 (January 19, 2023)
+  - Add missing changelog link
+
+## 0.2.0 (January 19, 2023)
+  - Implement Changelog
+  - Implement StringUtils
+
+## 0.1.0 (January 14, 2023)
+  - Update composer dependencies
+  - Update composer dependencies
+  - Delte deploy script and add to Makefile
+  - Install sass loader and implement sass against css
+  - Remove yarn package manager
+  - Add Makefile for testing in a single cmd
+  - Update composer dependencies
+  - Remove unnecessary twig controller param
+  - Inline variable for cached item
+  - Extract service to interface and use it everywhere
+  - Merge generate and generateWithStrength method
+  - Implement integration tests
+  - Implement application test
+  - Simplify interface, remove generate method
+  - Update composer dependency
+  - Upgrade symfony version to 6.1
+  - Improve responsive visibility and add deploy bash script
+  - Fix generator space error
+  - Implement flowbite template
+  - Add Dockerfile
+  - Create partial components
+  - Validate generate input phrase
+  - Implement password generator
+  - Implement template
+  - Add tailwind requirements to app styles
+  - Configure webpack
+  - Configure tailwindcss
+  - Install yarn
+  - Install template, webpack and profiler pack
+  - Add controller to generate secure password
+  - Add console command to generate password from phrase
+  - Implement generating a secure password from a phrase
+  - Add concept.md file
+  - Ignore idea folder from git
+  - Add initial set of files
+
