@@ -34,7 +34,9 @@ class RandomGenerator implements GeneratorInterface
                 new AlphaLowerGenerator(),
                 new AlphaUpperGenerator(),
             ],
-            self::STRATEGY_NUMERIC => $this->generators = [new NumericGenerator()],
+            self::STRATEGY_NUMERIC => $this->generators = [
+                new NumericGenerator(),
+            ],
             self::STRATEGY_ALPHA_NUMERIC => $this->generators = [
                 new AlphaLowerGenerator(),
                 new AlphaUpperGenerator(),
@@ -78,6 +80,6 @@ class RandomGenerator implements GeneratorInterface
 
     private function getRandomGenerator(): mixed
     {
-        return $this->generators[random_int(0, count($this->generators) - 1)];
+        return $this->generators[array_rand($this->generators)];
     }
 }
