@@ -1,3 +1,62 @@
+## 0.3.0 (May 18, 2023)
+  - Extract method arrangeGenerators
+  - Fix random page form placeholder value
+  - Change rand_int with array_rand in getRandomGenerator
+  - Extract method getRandomGenerator
+  - Remove duplicated constants
+  - Extract class from methods
+  - Replace regex pattern short ones
+  - Fix about page template base directory path error
+  - Add about page
+  - Rename DefaultController as HomeController
+  - Improve random generator page
+  - Add random generator page
+  - Improve random generator
+  - Add missing special chars like ";=-"
+  - Improve const definitions
+  - Update dependencies
+  - Sort order methods
+  - Add alphanumeric-upper generator
+  - Add alphanumeric-lower generator
+  - Add alpha-upper generator
+  - Add alpha-lower generator
+  - Refactor re-order methods
+  - Refactor extract method regex patterns
+  - Refactor regex matcher
+  - Remove forward and back slashes from complex generator
+  - Add missing regex pattern end limiter
+  - Add complex random string generate test
+  - Add regex pattern missing end limiter
+  - Refactor random generator remove redundant codes
+  - Add complex random generator method
+  - Add random generator components
+  - Add helper methods to base test class
+  - Rename Password prefix to Acronym
+  - Remove class route annotation
+  - Rename controller name
+  - Use base api test class
+  - Create base api test class
+  - Improve template design
+  - Implement new AcronymGenerator
+  - Add RandomGenerator class
+  - Extract method getAcronym
+  - Refactor improve method convertToSpecialCharacter
+  - Extract method convertToSpecialCharacter
+  - Extract method getFirstAlphaNumericCharacter
+  - Sort order methods and fix naming is_html helper method
+  - Inline variable $phrase
+  - Refactor use preg_split instead of explode
+  - Extract method splitPhraseIntoWords
+  - Extract method validatePhrase
+  - Rename method to generateAcronymFromPhrase
+  - Change acronym generator class
+  - Change company name
+  - Update docker file
+  - Update composer dependencies
+  - Implement VersionInterface
+  - Implement VersionService for twig extension
+  - Add version service
+
 ## 0.2.1 (January 19, 2023)
   - Add missing changelog link
 
