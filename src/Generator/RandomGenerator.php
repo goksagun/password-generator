@@ -29,40 +29,7 @@ class RandomGenerator implements GeneratorInterface
         private readonly int $length = self::DEFAULT_LENGTH,
         private readonly int $strategy = self::STRATEGY_ALPHA_NUMERIC
     ) {
-        match ($this->strategy) {
-            self::STRATEGY_ALPHA => $this->generators = [
-                new AlphaLowerGenerator(),
-                new AlphaUpperGenerator(),
-            ],
-            self::STRATEGY_NUMERIC => $this->generators = [
-                new NumericGenerator(),
-            ],
-            self::STRATEGY_ALPHA_NUMERIC => $this->generators = [
-                new AlphaLowerGenerator(),
-                new AlphaUpperGenerator(),
-                new NumericGenerator(),
-            ],
-            self::STRATEGY_COMPLEX => $this->generators = [
-                new AlphaLowerGenerator(),
-                new AlphaUpperGenerator(),
-                new NumericGenerator(),
-                new SpecialGenerator(),
-            ],
-            self::STRATEGY_ALPHA_LOWER => $this->generators = [
-                new AlphaLowerGenerator(),
-            ],
-            self::STRATEGY_ALPHA_UPPER => $this->generators = [
-                new AlphaUpperGenerator(),
-            ],
-            self::STRATEGY_ALPHANUMERIC_LOWER => $this->generators = [
-                new AlphaLowerGenerator(),
-                new NumericGenerator(),
-            ],
-            self::STRATEGY_ALPHANUMERIC_UPPER => $this->generators = [
-                new AlphaUpperGenerator(),
-                new NumericGenerator(),
-            ],
-        };
+        $this->arrangeGenerators();
     }
 
 
@@ -81,5 +48,43 @@ class RandomGenerator implements GeneratorInterface
     private function getRandomGenerator(): mixed
     {
         return $this->generators[array_rand($this->generators)];
+    }
+
+    private function arrangeGenerators(): void
+    {
+        $this->generators = match ($this->strategy) {
+            self::STRATEGY_ALPHA => [
+                new AlphaLowerGenerator(),
+                new AlphaUpperGenerator(),
+            ],
+            self::STRATEGY_NUMERIC => [
+                new NumericGenerator(),
+            ],
+            self::STRATEGY_ALPHA_NUMERIC => [
+                new AlphaLowerGenerator(),
+                new AlphaUpperGenerator(),
+                new NumericGenerator(),
+            ],
+            self::STRATEGY_COMPLEX => [
+                new AlphaLowerGenerator(),
+                new AlphaUpperGenerator(),
+                new NumericGenerator(),
+                new SpecialGenerator(),
+            ],
+            self::STRATEGY_ALPHA_LOWER => [
+                new AlphaLowerGenerator(),
+            ],
+            self::STRATEGY_ALPHA_UPPER => [
+                new AlphaUpperGenerator(),
+            ],
+            self::STRATEGY_ALPHANUMERIC_LOWER => [
+                new AlphaLowerGenerator(),
+                new NumericGenerator(),
+            ],
+            self::STRATEGY_ALPHANUMERIC_UPPER => [
+                new AlphaUpperGenerator(),
+                new NumericGenerator(),
+            ],
+        };
     }
 }
