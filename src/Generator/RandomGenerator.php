@@ -68,11 +68,16 @@ class RandomGenerator implements GeneratorInterface
     {
         $result = '';
         for ($i = 0; $i < $this->length; $i++) {
-            $generator = $this->generators[random_int(0, count($this->generators) - 1)];
+            $generator = $this->getRandomGenerator();
 
             $result .= $generator->generate();
         }
 
         return $result;
+    }
+
+    private function getRandomGenerator(): mixed
+    {
+        return $this->generators[random_int(0, count($this->generators) - 1)];
     }
 }
