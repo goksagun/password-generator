@@ -5,7 +5,7 @@ namespace App\Tests\Generator;
 use App\Generator\AcronymGenerator;
 use PHPUnit\Framework\TestCase;
 
-class PasswordGeneratorTest extends TestCase
+class AcronymGeneratorTest extends TestCase
 {
 
     /**

@@ -7,8 +7,8 @@ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent('password_generator')]
-final class PasswordGeneratorComponent
+#[AsLiveComponent('acronym_generator')]
+final class AcronymGeneratorComponent
 {
     use DefaultActionTrait;
 
@@ -19,7 +19,7 @@ final class PasswordGeneratorComponent
     {
     }
 
-    public function getPassword(): string
+    public function getAcronym(): string
     {
         if ('' === $this->phrase) {
             $this->phrase = 'I go bowling every Friday night with 8 friends';
