@@ -31,10 +31,18 @@ class AcronymGeneratorTest extends TestCase
         yield ['15nbt3', "\r\nLinefeed should not be throw error \r\n"];
     }
 
-    public function testThrowException()
+    /**
+     * @dataProvider provideGenerateFromInvalidData
+     */
+    public function testThrowException(string $input)
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        (new AcronymGenerator('<p>I go bowling every Friday night with 8 friends</p>'))->generate();
+        (new AcronymGenerator($input))->generate();
+    }
+
+    public function provideGenerateFromInvalidData(): \Generator
+    {
+        yield 'Html tags not allowed' => ['<p>I go bowling every Friday night with 8 friends</p>'];
     }
 }

@@ -27,6 +27,8 @@ class AcronymGenerator implements GeneratorInterface
     {
         $this->validatePhrase($phrase);
 
+        $phrase = $this->removeSpecialCharsFromPhrase($phrase);
+
         $words = $this->splitPhraseIntoWords($phrase);
 
         return $this->getAcronym($words);
@@ -41,6 +43,11 @@ class AcronymGenerator implements GeneratorInterface
         if ($this->isHtml($phrase)) {
             throw new \InvalidArgumentException('Phrase should be contains alpha numeric chars and symbols');
         }
+    }
+
+    private function removeSpecialCharsFromPhrase(string $phrase): string|array|null
+    {
+        return preg_replace('/[\'^£$%&*()}{@#~?><>.,|=_+¬-]/', '', $phrase);
     }
 
     private function isHtml(string $phrase): bool
