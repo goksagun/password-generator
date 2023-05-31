@@ -43,6 +43,7 @@ class AcronymGeneratorTest extends TestCase
 
     public function provideGenerateFromInvalidData(): \Generator
     {
-        yield 'Html tags not allowed' => ['<p>I go bowling every Friday night with 8 friends</p>'];
+        yield 'Empty not allowed' => [''];
+        yield 'Special chars not allowed' => ['\'^£$%&*()}{@#~?><>.,|=_+¬-'];
     }
 }
