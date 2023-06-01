@@ -2,7 +2,9 @@
 module.exports = {
     darkMode: 'media',
     content: [
-        "./templates/**/*.twig"
+        "./assets/**/*.js",
+        "./templates/**/*.html.twig",
+        "./node_modules/flowbite/**/*.js" // set up the path to the flowbite package
     ],
     theme: {
         extend: {
