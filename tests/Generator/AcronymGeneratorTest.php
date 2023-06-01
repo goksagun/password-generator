@@ -5,7 +5,7 @@ namespace App\Tests\Generator;
 use App\Generator\AcronymGenerator;
 use PHPUnit\Framework\TestCase;
 
-class PasswordGeneratorTest extends TestCase
+class AcronymGeneratorTest extends TestCase
 {
 
     /**
@@ -31,10 +31,19 @@ class PasswordGeneratorTest extends TestCase
         yield ['15nbt3', "\r\nLinefeed should not be throw error \r\n"];
     }
 
-    public function testThrowException()
+    /**
+     * @dataProvider provideGenerateFromInvalidData
+     */
+    public function testThrowException(string $input)
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        (new AcronymGenerator('<p>I go bowling every Friday night with 8 friends</p>'))->generate();
+        (new AcronymGenerator($input))->generate();
+    }
+
+    public function provideGenerateFromInvalidData(): \Generator
+    {
+        yield 'Empty not allowed' => [''];
+        yield 'Special chars not allowed' => ['\'^£$%&*()}{@#~?><>.,|=_+¬-'];
     }
 }

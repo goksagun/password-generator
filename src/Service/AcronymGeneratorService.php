@@ -3,12 +3,11 @@
 namespace App\Service;
 
 use App\Generator\AcronymGenerator;
-use Symfony\Contracts\Cache\CacheInterface;
 use ZxcvbnPhp\Zxcvbn;
 
 class AcronymGeneratorService implements AcronymGeneratorInterface
 {
-    public function __construct(private readonly CacheInterface $cache)
+    public function __construct()
     {
     }
 
@@ -17,9 +16,7 @@ class AcronymGeneratorService implements AcronymGeneratorInterface
         return [
             'data' => [
                 'phrase' => $phrase,
-                'acronym' => $this->cache->get($phrase, function () use ($phrase): string {
-                    return (new AcronymGenerator($phrase))->generate();
-                }),
+                'acronym' => (new AcronymGenerator($phrase))->generate(),
             ],
         ];
     }
