@@ -1,3 +1,17 @@
+## 0.4.0 (June 01, 2023)
+  - Npm update packages
+  - Composer update recipes for symfony/webpack-encore-bundle
+  - Composer update recipes for symfony/twig-bundle
+  - Composer update recipes for symfony/routing
+  - Composer update recipes for symfony/phpunit-bridge
+  - Composer update recipes for symfony/framework-bundle
+  - Composer update recipes for doctrine/doctrine-bundle
+  - Composer update dependencies
+  - Fix special chars provided in the input error
+  - Remove special chars from phrase
+  - Rename PasswordGeneratorComponent to AcronymGeneratorComponent
+  - Fix unwrapped text string
+
 ## 0.3.0 (May 18, 2023)
   - Extract method arrangeGenerators
   - Fix random page form placeholder value
