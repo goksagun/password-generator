@@ -15,7 +15,7 @@ class VersionServiceTest extends TestCase
         $this->versionService = new VersionService('tests/Service/Fixtures/VERSION');
     }
 
-    public function testGetVersion()
+    public function testGetVersion(): void
     {
         $this->assertEquals('0.1.0', $this->versionService->getVersion());
     }
