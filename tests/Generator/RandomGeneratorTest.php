@@ -11,7 +11,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaData
      */
-    public function testGenerateFromMatchesAlpha(?int $length)
+    public function testGenerateFromMatchesAlpha(?int $length): void
     {
         $expected = '/^[a-zA-Z]+$/';
         $generator = $this->getRandomGenerator($length, RandomGenerator::STRATEGY_ALPHA);
@@ -32,7 +32,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromGivenLengthAlphaData
      */
-    public function testGenerateFromGivenLengthAlpha(int $expected, ?int $length)
+    public function testGenerateFromGivenLengthAlpha(int $expected, ?int $length): void
     {
         $generator = $this->getRandomGenerator($length, RandomGenerator::STRATEGY_ALPHA);
         $actual = $generator->generate();
@@ -52,7 +52,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesNumericData
      */
-    public function testGenerateFromMatchesNumeric(?int $length)
+    public function testGenerateFromMatchesNumeric(?int $length): void
     {
         $expected = '/^[0-9]+$/';
         $generator = $length
@@ -75,7 +75,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromGivenLengthNumericData
      */
-    public function testGenerateFromGivenLengthNumeric(int $expected, ?int $length)
+    public function testGenerateFromGivenLengthNumeric(int $expected, ?int $length): void
     {
         $generator = $this->getRandomGenerator($length, RandomGenerator::STRATEGY_NUMERIC);
         $actual = $generator->generate();
@@ -95,7 +95,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaNumericData
      */
-    public function testGenerateFromMatchesAlphaNumeric(?int $length)
+    public function testGenerateFromMatchesAlphaNumeric(?int $length): void
     {
         $expected = '/^[a-zA-Z0-9]+$/';
         $generator = $length ? new RandomGenerator($length) : new RandomGenerator();
@@ -116,7 +116,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromGivenLengthAlphaNumericData
      */
-    public function testGenerateFromGivenLengthAlphaNumeric(int|string $expected, ?int $length)
+    public function testGenerateFromGivenLengthAlphaNumeric(int|string $expected, ?int $length): void
     {
         $generator = $length ? new RandomGenerator($length) : new RandomGenerator();
         $actual = $generator->generate();
@@ -136,7 +136,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesComplexData
      */
-    public function testGenerateFromMatchesComplex(?int $length)
+    public function testGenerateFromMatchesComplex(?int $length): void
     {
         $expected = '/^[a-zA-Z0-9\]\[}{@_!#$%^&*()<>?|~:;=\-+]+$/';
 
@@ -161,7 +161,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromGivenLengthMatchesComplexData
      */
-    public function testGenerateFromGivenLengthMatchesComplex(int $expected, ?int $length)
+    public function testGenerateFromGivenLengthMatchesComplex(int $expected, ?int $length): void
     {
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_COMPLEX)
@@ -183,7 +183,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaLowerData
      */
-    public function testGenerateFromMatchesAlphaLower(?int $length)
+    public function testGenerateFromMatchesAlphaLower(?int $length): void
     {
         $expected = '/^[a-z]+$/';
         $generator = $length
@@ -206,7 +206,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromGivenLengthMatchesAlphaLowerData
      */
-    public function testGenerateFromGivenLengthMatchesAlphaLower(int $expected, ?int $length)
+    public function testGenerateFromGivenLengthMatchesAlphaLower(int $expected, ?int $length): void
     {
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHA_LOWER)
@@ -228,7 +228,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaUpperData
      */
-    public function testGenerateFromMatchesAlphaUpper(?int $length)
+    public function testGenerateFromMatchesAlphaUpper(?int $length): void
     {
         $expected = '/^[A-Z]+$/';
         $generator = $length
@@ -251,7 +251,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromGivenLengthMatchesAlphaUpperData
      */
-    public function testGenerateFromGivenLengthMatchesAlphaUpper(int $expected, ?int $length)
+    public function testGenerateFromGivenLengthMatchesAlphaUpper(int $expected, ?int $length): void
     {
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHA_UPPER)
@@ -273,7 +273,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaNumericLowerData
      */
-    public function testGenerateFromMatchesAlphaNumericLower(?int $length)
+    public function testGenerateFromMatchesAlphaNumericLower(?int $length): void
     {
         $expected = '/^[a-zA-Z0-9]+$/';
         $generator = $length
@@ -296,7 +296,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromGivenLengthMatchesAlphaNumericLowerData
      */
-    public function testGenerateFromGivenLengthMatchesAlphaNumericLower(int $expected, ?int $length)
+    public function testGenerateFromGivenLengthMatchesAlphaNumericLower(int $expected, ?int $length): void
     {
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHANUMERIC_LOWER)
@@ -318,7 +318,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromMatchesAlphaNumericUpperData
      */
-    public function testGenerateFromMatchesAlphaNumericUpper(?int $length)
+    public function testGenerateFromMatchesAlphaNumericUpper(?int $length): void
     {
         $expected = '/^[A-Z0-9]+$/';
         $generator = $length
@@ -341,7 +341,7 @@ class RandomGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromGivenLengthMatchesAlphaNumericUpperData
      */
-    public function testGenerateFromGivenLengthMatchesAlphaNumericUpper(int $expected, ?int $length)
+    public function testGenerateFromGivenLengthMatchesAlphaNumericUpper(int $expected, ?int $length): void
     {
         $generator = $length
             ? new RandomGenerator($length, RandomGenerator::STRATEGY_ALPHANUMERIC_UPPER)
