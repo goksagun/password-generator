@@ -1,3 +1,23 @@
+## 0.5.0 (February 12, 2024)
+  - Update Dockerfile
+  - Remove unnecessary public files
+  - Upgrade symfony 7
+  - Install remove webpack and add stimulus
+  - Install tailwind-bundle
+  - Install asset-mapper
+  - Remove sass and use pure css
+  - Replace "symfony-bundles/json-request-bundle" with native implementation
+  - Update npm packages
+  - Update recipe symfony/twig-bundle
+  - Update recipe symfony/phpunit-bridge
+  - Update recipe symfony/framework-bundle
+  - Update recipe phpunit/phpunit
+  - Update recipe doctrine/doctrine-bundle
+  - Upgrade to 6.4
+  - Add void return type
+  - Install rector/rector
+  - Update Symfony to version 6.3.4
+
 ## 0.4.0 (June 01, 2023)
   - Npm update packages
   - Composer update recipes for symfony/webpack-encore-bundle
