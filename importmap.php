@@ -34,4 +34,10 @@ return [
         'version' => '2.2.1',
         'type' => 'css',
     ],
+    '@symfony/stimulus-bridge' => [
+        'version' => '3.2.2',
+    ],
+    '@symfony/stimulus-bundle' => [
+        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
+    ],
 ];

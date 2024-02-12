@@ -9,7 +9,7 @@
 import './styles/app.css';
 
 // start the Stimulus application
-import './bootstrap';
+import './bootstrap.js';
 
 // enable the interactive UI components from Flowbite
 import 'flowbite';
