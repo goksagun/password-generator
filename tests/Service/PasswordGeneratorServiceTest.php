@@ -20,7 +20,7 @@ class PasswordGeneratorServiceTest extends KernelTestCase
         $this->passwordGeneratorService = $container->get(AcronymGeneratorService::class);
     }
 
-    public function testGenerate()
+    public function testGenerate(): void
     {
         $actual = $this->passwordGeneratorService->generate('I go bowling every Friday night with 8 friends');
         $this->assertArrayHasKey('data', $actual);
@@ -28,7 +28,7 @@ class PasswordGeneratorServiceTest extends KernelTestCase
         $this->assertArrayHasKey('acronym', $actual['data']);
     }
 
-    public function testGenerateWithStrength()
+    public function testGenerateWithStrength(): void
     {
         $actual = $this->passwordGeneratorService->generateWithStrength(
             'I go bowling every Friday night with 8 friends'

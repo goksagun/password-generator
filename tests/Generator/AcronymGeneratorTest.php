@@ -34,7 +34,7 @@ class AcronymGeneratorTest extends TestCase
     /**
      * @dataProvider provideGenerateFromInvalidData
      */
-    public function testThrowException(string $input)
+    public function testThrowException(string $input): void
     {
         $this->expectException(\InvalidArgumentException::class);
 

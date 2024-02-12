@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class StringUtilsTest extends TestCase
 {
 
-    public function test_string_utility_class_should_not_instantiate()
+    public function test_string_utility_class_should_not_instantiate(): void
     {
         $this->expectException(\Exception::class);
 
@@ -18,7 +18,7 @@ class StringUtilsTest extends TestCase
     /**
      * @dataProvider provideRemoveFeedLineData
      */
-    public function testRemoveFeedLine(string $expected, string $input)
+    public function testRemoveFeedLine(string $expected, string $input): void
     {
         $this->assertEquals($expected, StringUtils::removeLineFeed($input));
     }

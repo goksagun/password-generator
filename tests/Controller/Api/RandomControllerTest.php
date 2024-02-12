@@ -17,7 +17,7 @@ class RandomControllerTest extends ApiTestCase
         $this->assertLength(8, $this->getContent($response)->data->random);
     }
 
-    public function test_given_length_then_return_success()
+    public function test_given_length_then_return_success(): void
     {
         $content = <<<'JSON'
         {
@@ -36,7 +36,7 @@ class RandomControllerTest extends ApiTestCase
         $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
-    public function test_given_strategy_alpha_then_return_success()
+    public function test_given_strategy_alpha_then_return_success(): void
     {
         $content = <<<'JSON'
         {
@@ -56,7 +56,7 @@ class RandomControllerTest extends ApiTestCase
         $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
-    public function test_given_strategy_alpha_lower_then_return_success()
+    public function test_given_strategy_alpha_lower_then_return_success(): void
     {
         $content = <<<'JSON'
         {
@@ -76,7 +76,7 @@ class RandomControllerTest extends ApiTestCase
         $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
-    public function test_given_strategy_alpha_upper_then_return_success()
+    public function test_given_strategy_alpha_upper_then_return_success(): void
     {
         $content = <<<'JSON'
         {
@@ -96,7 +96,7 @@ class RandomControllerTest extends ApiTestCase
         $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
-    public function test_given_strategy_numeric_then_return_success()
+    public function test_given_strategy_numeric_then_return_success(): void
     {
         $content = <<<'JSON'
         {
@@ -116,7 +116,7 @@ class RandomControllerTest extends ApiTestCase
         $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
-    public function test_given_strategy_alphanumeric_then_return_success()
+    public function test_given_strategy_alphanumeric_then_return_success(): void
     {
         $content = <<<'JSON'
         {
@@ -135,7 +135,7 @@ class RandomControllerTest extends ApiTestCase
         $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
-    public function test_given_strategy_alphanumeric_lower_then_return_success()
+    public function test_given_strategy_alphanumeric_lower_then_return_success(): void
     {
         $content = <<<'JSON'
         {
@@ -155,7 +155,7 @@ class RandomControllerTest extends ApiTestCase
         $this->assertDoesNotMatchRegularExpression($this->getSpecialRegexPattern(), $actual);
     }
 
-    public function test_given_strategy_alphanumeric_upper_then_return_success()
+    public function test_given_strategy_alphanumeric_upper_then_return_success(): void
     {
         $content = <<<'JSON'
         {

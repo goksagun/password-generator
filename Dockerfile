@@ -1,6 +1,6 @@
 # Use the official PHP image.
 # https://hub.docker.com/_/php
-FROM php:8.1-apache
+FROM php:8.2-apache
 
 ENV PORT 8080
 ENV PROJECT_ROOT /var/www/project
@@ -44,8 +44,9 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN export APP_ENV=$APP_ENV  \
     && composer install --no-dev --optimize-autoloader \
     && composer dump-env $APP_ENV \
-    && npm install \
-    && ./node_modules/.bin/encore $APP_ENV
+    && npm install  \
+    && php bin/console tailwind:build --minify \
+    && php bin/console asset-map:compile
 
 # Copy Apache default virtual host configuration.
 COPY docker/apache/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
